@@ -1,13 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<!-- Add CSS at the head of HTML file -->
-    <link rel="stylesheet" href="./css/main.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Virtual Multi-Step Forging Lab</title>
+<style>body{font-family:'Segoe UI',Roboto,sans-serif;background-color:#f8fafc;color:#1e293b;margin:0;padding:0;display:flex;flex-direction:column;align-items:center;min-height:100vh}header{background:#fff;width:100%;padding:20px 0;box-shadow:0 2px 10px rgba(0,0,0,0.05);text-align:center;border-bottom:4px solid #2563eb}h1{margin:0;font-size:1.8rem;color:#2563eb;text-transform:uppercase;letter-spacing:1px}p.subtitle{margin:5px 0 0;color:#64748b;font-size:0.9rem}.container{display:flex;flex-wrap:wrap;gap:20px;max-width:1200px;width:95%;margin:30px auto;justify-content:center}.sim-window{flex:2;min-width:300px;background:#fff;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,0.08);padding:10px;position:relative;overflow:hidden}canvas{width:100%;height:450px;background:radial-gradient(circle at center,#f1f5f9 0%,#cbd5e1 100%);border-radius:8px;cursor:default;border:1px solid #94a3b8}.controls-overlay{position:absolute;bottom:25px;left:50%;transform:translateX(-50%);display:flex;gap:15px;z-index:10}.action-btn{background:#2563eb;color:#fff;border:none;padding:12px 35px;font-size:1.1rem;font-weight:700;border-radius:50px;cursor:pointer;box-shadow:0 4px 15px rgba(37,99,235,0.4);transition:all .2s ease;display:flex;align-items:center;gap:8px;text-transform:uppercase}.action-btn:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 8px 25px rgba(37,99,235,0.5);background:#1d4ed8}.action-btn:active{transform:translateY(1px)}.action-btn:disabled{background:#94a3b8;cursor:not-allowed;transform:none;box-shadow:none}.action-btn.pulse{animation:pulse 1.5s infinite}@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,99,235,0.7)}70%{box-shadow:0 0 0 15px rgba(37,99,235,0)}100%{box-shadow:0 0 0 0 rgba(37,99,235,0)}}.guide-panel{flex:1;min-width:300px;background:#fff;border-radius:12px;padding:25px;box-shadow:0 10px 25px rgba(0,0,0,0.08);border-left:5px solid #f59e0b}.step-indicator{display:flex;justify-content:space-between;margin-bottom:20px;border-bottom:1px solid #e2e8f0;padding-bottom:10px}.step-dot{width:35px;height:35px;border-radius:50%;background:#cbd5e1;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;transition:.3s;border:2px solid #fff;box-shadow:0 2px 5px rgba(0,0,0,0.1)}.step-dot.active{background:#2563eb;transform:scale(1.2);box-shadow:0 4px 10px rgba(37,99,235,0.3)}.step-dot.completed{background:#22c55e}h2.guide-title{margin-top:0;color:#1e293b;font-size:1.5rem}.guide-content{line-height:1.7;color:#475569;font-size:1rem}.guide-content b{color:#2563eb}.status-bar{margin-top:20px;background:#f0f9ff;padding:12px;border-radius:6px;color:#2563eb;font-weight:600;text-align:center;border:2px dashed #2563eb;transition:all 0.3s}.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;width:100%;margin-top:20px}.info-card{background:#f8fafc;padding:15px;border-radius:8px;font-size:.85rem;color:#64748b;border:1px solid #e2e8f0}.info-card strong{display:block;color:#1e293b;margin-bottom:5px;font-size:0.95rem}</style>
 </head>
 <body>
-		<!-- Your code goes here-->
+<script src=js/app.js"></script>
+<header>
+    <h1>Virtual Cold Heading Simulator</h1>
+    <p class="subtitle">Interactive Multi-Step Bolt Manufacturing Process</p>
+</header>
 
-	<!-- Add JS at the bottom of HTML file --> 
-        <script src="./js/main.js"></script>
+<div class="container">
+    <!-- Simulation Area -->
+    <div class="sim-window">
+        <canvas id="simCanvas"></canvas>
+        
+        <div class="controls-overlay">
+            <button id="actionBtn" class="action-btn pulse">Start Process</button>
+            <button id="resetBtn" class="action-btn" style="background: #64748b; display: none;">Reset Lab</button>
+        </div>
+    </div>
+
+    <!-- Educational Guide -->
+    <div class="guide-panel">
+        <div class="step-indicator">
+            <div class="step-dot active" id="dot1">1</div>
+            <div class="step-dot" id="dot2">2</div>
+            <div class="step-dot" id="dot3">3</div>
+            <div class="step-dot" id="dot4">4</div>
+        </div>
+
+        <h2 id="stepTitle" class="guide-title">Step 1: Wire Feeding & Cutting</h2>
+        <div id="stepContent" class="guide-content">
+            <p>The process begins with a <b>continuous wire coil</b> fed through a straightener. The machine automatically cuts the wire at a specific designated length to create a "Blank".</p>
+            <p><i>Task: Click the button to feed the wire and activate the shear blade.</i></p>
+        </div>
+
+        <div id="statusBox" class="status-bar">System Ready. Waiting for operator...</div>
+        
+        <div class="info-grid">
+            <div class="info-card">
+                <strong>Material</strong>
+                Low Carbon Steel / Alloy
+            </div>
+            <div class="info-card">
+                <strong>Process Temp</strong>
+                Increases during deformation
+            </div>
+            <div class="info-card">
+                <strong>L/D Ratio</strong>
+                &lt; 3:1 (To prevent buckling)
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>
