@@ -1,5 +1,4 @@
 ### Procedure
-# Multi-Step Forging – Procedure & Theory
 
 ## 1. Introduction
 Forging is one of the oldest metal-forming processes, traditionally performed by a smith using a hammer and anvil. Modern industrial forging uses **hammers** or **presses** powered by electricity, hydraulics, steam, or compressed air.
