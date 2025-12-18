@@ -2,7 +2,7 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "The number of steps in which designing of forming process can be divided are:",
+      "question": "Q1. The number of steps in which designing of forming process can be divided are:",
       "answers": {
         "a": "5",
         "b": "3",
@@ -19,7 +19,7 @@
       "difficulty": "beginner"
     },
     {
-      "question": "Which of the following product is not manufactured by forming operation:",
+      "question": "Q2. Which of the following product is not manufactured by forming operation:",
       "answers": {
         "a": "Fasteners",
         "b": "Hand tools",
@@ -36,7 +36,7 @@
       "difficulty": "beginner"
     },
     {
-      "question": "Which of the following is an advantage of forging:",
+      "question": "Q3. Which of the following is an advantage of forging:",
       "answers": {
         "a": "Good surface finish",
         "b": "Low tooling cost",
@@ -53,7 +53,7 @@
       "difficulty": "beginner"
     },
     {
-      "question": "Which one of the following may not be the variable that affect the metal forming process:",
+      "question": "Q4. Which one of the following may not be the variable that affect the metal forming process:",
       "answers": {
         "a": "Billet material property",
         "b": "Ram/die velocity",
@@ -70,7 +70,7 @@
       "difficulty": "beginner"
     },
     {
-      "question": "In forging operation fullering is done to:",
+      "question": "Q5. In forging operation fullering is done to:",
       "answers": {
         "a": "Draw out material",
         "b": "Bend the materials",
