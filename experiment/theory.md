@@ -1,4 +1,3 @@
-# Multi Step Forging
 
 Traditionally, forging was performed by a smith using hammer and anvil, and though the use of water power in the production and working of iron dates to the 12th century, the hammer and anvil are not obsolete. The smithy or forge has evolved over centuries to become a facility with engineered processes, production equipment, tooling, raw materials and products to meet the demands of modern industry.
 
