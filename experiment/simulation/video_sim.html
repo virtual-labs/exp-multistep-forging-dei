@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -459,6 +459,571 @@
 
         document.addEventListener('keydown', function(event) {
             if (event.key === "Escape") closeModalBtn();
+        });
+    </script>
+</body>
+</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Forging | Virtual Lab - Dayalbagh Educational Institute</title>
+    <style>
+        :root {
+            --primary: #003366; /* DEI Academic Blue */
+            --bg: #f8f9fa;
+            --text-main: #2c3e50;
+            --text-light: #6c757d;
+            --shadow: 0 4px 20px rgba(0,0,0,0.05);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* --- Theme Colors --- */
+        .theme-blue { --theme-light: #eef7ff; --theme-accent: #2196f3; --theme-border: #bbdefb; }
+        .theme-teal { --theme-light: #e0f2f1; --theme-accent: #009688; --theme-border: #b2dfdb; }
+        .theme-indigo { --theme-light: #ede7f6; --theme-accent: #673ab7; --theme-border: #d1c4e9; }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #aaa; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- Header --- */
+        header {
+            background: #ffffff;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: relative; 
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--primary);
+            flex-shrink: 0;
+        }
+
+        .brand h1 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 2px;
+        }
+
+        .brand span {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* --- Main Layout --- */
+        main {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            animation: fadeIn 0.8s ease-out;
+            flex-grow: 1;
+        }
+
+        /* --- Accordion Cards --- */
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: background 0.3s ease;
+            position: relative;
+        }
+
+        .theme-blue .card-header:hover { background: #f5fafe; }
+        .theme-teal .card-header:hover { background: #f2fcfb; }
+        .theme-indigo .card-header:hover { background: #fbf9fd; }
+
+        .card-header::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 6px;
+            background: var(--theme-accent);
+            opacity: 0.7;
+        }
+
+        .card-header h2 {
+            font-size: 1.25rem;
+            color: #333;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .chevron {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: #f0f0f0;
+            width: 32px; height: 32px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+        }
+
+        /* --- Card Body --- */
+        .card-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            opacity: 0;
+            background-color: var(--theme-light); 
+        }
+
+        .card-content-wrapper {
+            padding: 1.5rem;
+            border-top: 1px solid var(--theme-border);
+        }
+
+        .card.active .card-body { max-height: 2000px; opacity: 1; }
+        .card.active .chevron {
+            transform: rotate(180deg);
+            background: var(--theme-accent);
+            color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .card.active .card-header h2 { color: var(--theme-accent); }
+
+        /* --- Content Styling --- */
+        .sub-section { margin-bottom: 2rem; }
+        .sub-section:last-child { margin-bottom: 0; }
+
+        .sub-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--theme-accent);
+            margin-bottom: 1rem;
+            font-weight: 800;
+            opacity: 0.8;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .sub-title::after {
+            content: ''; flex-grow: 1; height: 1px; background: var(--theme-border);
+        }
+
+        .sim-link {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.5rem;
+            background: white;
+            margin-bottom: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            border-left: 5px solid transparent;
+        }
+
+        .sim-link span { font-weight: 500; font-size: 0.95rem; }
+        .sim-link i { color: #ccc; font-size: 0.8rem; transition: 0.3s; }
+
+        .sim-link:hover {
+            transform: translateX(5px) translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--theme-accent);
+        }
+        .sim-link:hover span { color: var(--theme-accent); }
+        .sim-link:hover i { color: var(--theme-accent); transform: translateX(3px); }
+
+        /* --- UPDATED MODAL WITH PROMINENT DESCRIPTION --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 30, 60, 0.92);
+            backdrop-filter: blur(8px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000;
+            opacity: 0; visibility: hidden;
+            transition: var(--transition);
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white; 
+            width: 100%; 
+            max-width: 900px;
+            max-height: 90vh; 
+            border-radius: 16px; 
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            transform: scale(0.95); 
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+
+        .video-container {
+            width: 100%; 
+            background: #000; 
+            position: relative; 
+            padding-top: 56.25%;
+            flex-shrink: 0; 
+        }
+        .video-container video { 
+            position: absolute; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            display: block;
+        }
+
+        /* --- VIDEO DESCRIPTION AREA --- */
+        .video-description-container {
+            background: #f8f9fa;
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .video-description-label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+
+        .video-description-text {
+            font-size: 0.95rem;
+            color: #2c3e50;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            background: white;
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            border-left: 3px solid var(--primary);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .modal-details { 
+            padding: 1.8rem; 
+            overflow-y: auto; 
+            flex-grow: 1;
+        }
+        
+        .modal-header {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;
+        }
+
+        .modal-title { 
+            font-size: 1.3rem; 
+            color: var(--primary); 
+            font-weight: 700; 
+            line-height: 1.3;
+            flex-grow: 1;
+        }
+        
+        .close-btn {
+            background: #f8d7da; border: none;
+            min-width: 32px; height: 32px;
+            border-radius: 50%; color: #721c24;
+            cursor: pointer; font-size: 1.2rem;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.2s; margin-left: 15px;
+            flex-shrink: 0;
+        }
+        .close-btn:hover { background: #f5c6cb; transform: rotate(90deg); }
+
+        .modal-desc { 
+            color: #555; 
+            line-height: 1.7; 
+            font-size: 0.95rem; 
+            margin-top: 0.5rem;
+        }
+
+        footer {
+            text-align: center; padding: 2rem;
+            color: var(--text-light); font-size: 0.85rem;
+            border-top: 1px solid #eee; background: white;
+            flex-shrink: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .arrow::after { content: '➜'; font-family: sans-serif; }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .modal-content {
+                max-height: 95vh;
+            }
+            
+            .video-description-container {
+                padding: 1rem;
+            }
+            
+            .modal-details {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+
+    <main>
+        <div class="card theme-blue" id="card1">
+            <div class="card-header" onclick="toggleCard('card1')">
+                <h2>Multi-Step Forging</h2>
+                <span class="chevron">▼</span>
+            </div>
+            <div class="card-body">
+                <div class="card-content-wrapper">
+                    <div class="sub-section">
+                        <div class="sub-title">Simulation Setups</div>
+                        <div class="sim-link" onclick="openSim('MSF1.mp4', 'Multi-step Forging Setup 1', 'Visualization of the initial Upset Stage (Step 1). Observe the workpiece placement between the dies.')">
+                            <span>Setup 1: Upset Stage</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('MSF2.mp4', 'Multi-step Forging Setup 2', 'Visualization of the Blocker Stage (Step 2). The die configuration changes to shape the pre-form.')">
+                            <span>Setup 2: Blocker Stage</span> <i class="arrow"></i>
+                        </div>
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="sub-title">Analysis & Data</div>
+                        <div class="sim-link" onclick="openSim('MSF3.mp4', 'Equivalent Strain & Force (Part 1)', 'Analysis of the strain distribution and forging force required during the initial upsetting phase.')">
+                            <span>Strain & Force Analysis 1</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('MSF4.mp4', 'Equivalent Strain & Force (Part 2)', 'Continued analysis of internal stresses and force requirements during the secondary blocker stage.')">
+                            <span>Strain & Force Analysis 2</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('MSF5.mp4', 'Orthographic Views', 'Top and Front views of the multi-step process, providing a geometric perspective of the deformation.')">
+                            <span>Front & Top View Analysis</span> <i class="arrow"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card theme-teal" id="card2">
+            <div class="card-header" onclick="toggleCard('card2')">
+                <h2>Applications: Valve Forging</h2>
+                <span class="chevron">▼</span>
+            </div>
+            <div class="card-body">
+                <div class="card-content-wrapper">
+                    <div class="sub-section">
+                        <div class="sub-title">Valve Forging - Stage 1</div>
+                        <div class="sim-link" onclick="openSim('ValveForging/ValveForgingSetup.mp4', 'Valve Forging: Setup', 'Initial die setup for the manufacturing of an engine valve.')">
+                            <span>Setup Visualization</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('ValveForging/ValveForgingCutSection.mp4', 'Valve Forging: Cut Section', 'Cross-sectional view showing the internal material flow during the forging process.')">
+                            <span>Cut Section View</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('ValveForging/ValveforgingCurve.mp4', 'Valve Forging: Force Curve', 'Graphical representation of the forging load vs. stroke during the valve formation.')">
+                            <span>Forging Force Graph</span> <i class="arrow"></i>
+                        </div>
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="sub-title">Valve Forging - Stage 2</div>
+                        <div class="sim-link" onclick="openSim('ValveForging/ValveForgingFinal.mp4', 'Valve Forging: Final Process', 'Complete simulation of the valve forging process from billet to final geometry.')">
+                            <span>Final Process Animation</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('ValveForging/ValveForgingMesh.mp4', 'Process Analysis: Step 1', 'Mesh deformation analysis during the initial contact phase.')">
+                            <span>Step 1: Mesh Analysis</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('ValveForging/ValveForgingStrain.mp4', 'Process Analysis: Step 2', 'Equivalent strain distribution map across the valve head and stem.')">
+                            <span>Step 2: Strain Distribution</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('ValveForging/ValveForgingGraph.mp4', 'Process Analysis: Step 3', 'Final graphical analysis of process parameters.')">
+                            <span>Step 3: Graph Analysis</span> <i class="arrow"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card theme-indigo" id="card3">
+            <div class="card-header" onclick="toggleCard('card3')">
+                <h2>Applications: Hub Cap & Misc</h2>
+                <span class="chevron">▼</span>
+            </div>
+            <div class="card-body">
+                <div class="card-content-wrapper">
+                    <div class="sub-section">
+                        <div class="sub-title">Hub Cap Manufacturing</div>
+                        <div class="sim-link" onclick="openSim('HubCap/InitialHubCap.mp4', 'Hub Cap: Step 1', 'Initial deformation of the billet for the hub cap.')">
+                            <span>Step 1: Deformation</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('HubCap/InitialSectionView.mp4', 'Hub Cap: Section 1', 'Cross-section view of the initial stage.')">
+                            <span>Step 1: Section View</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('HubCap/MiddleHubCap.mp4', 'Hub Cap: Step 2', 'Intermediate stage of the hub cap forging.')">
+                            <span>Step 2: Intermediate</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('HubCap/MiddleSectionView.mp4', 'Hub Cap: Section 2', 'Cross-section view of the intermediate stage.')">
+                            <span>Step 2: Section View</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('HubCap/FinalHubCap.mp4', 'Hub Cap: Step 3', 'Final forging step completing the hub cap geometry.')">
+                            <span>Step 3: Final Form</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('HubCap/FinalSectionView.mp4', 'Hub Cap: Section 3', 'Cross-section view of the final product.')">
+                            <span>Step 3: Section View</span> <i class="arrow"></i>
+                        </div>
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="sub-title">Miscellaneous</div>
+                        <div class="sim-link" onclick="openSim('Heading.mp4', 'Heading Process', 'Simulation of the Heading process, commonly used for fastener manufacturing.')">
+                            <span>Heading Process</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('BallPeen.mp4', 'Ball Peen Hammer Forging', 'Simulation of a Ball Peen Hammer head being forged.')">
+                            <span>Ball Peen Hammer</span> <i class="arrow"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="videoModal" onclick="closeModal(event)">
+        <div class="modal-content">
+            <div class="video-container">
+                <video id="mainVideo" controls>
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <!-- NEW: Video Description Area -->
+            <div class="video-description-container">
+                <span class="video-description-label">Video Description</span>
+                <p class="video-description-text" id="videoDescriptionText">Description will appear here...</p>
+            </div>
+            <div class="modal-details">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modalTitle">Title</h3>
+                    <button class="close-btn" onclick="closeModalBtn()">×</button>
+                </div>
+                <p class="modal-desc" id="modalDesc">Additional details about the simulation...</p>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const basePath = "MultiStep/";
+        let currentDescription = "";
+
+        function toggleCard(cardId) {
+            const card = document.getElementById(cardId);
+            card.classList.toggle('active');
+        }
+
+        const modal = document.getElementById('videoModal');
+        const videoElement = document.getElementById('mainVideo');
+        const titleElement = document.getElementById('modalTitle');
+        const descElement = document.getElementById('modalDesc');
+        const videoDescriptionText = document.getElementById('videoDescriptionText');
+
+        function openSim(fileName, title, description) {
+            // Update video source
+            videoElement.src = basePath + fileName;
+            
+            // Update title
+            titleElement.textContent = title;
+            
+            // Set description in TWO places
+            currentDescription = description;
+            videoDescriptionText.textContent = description;
+            descElement.textContent = description;
+            
+            // Show modal
+            modal.classList.add('active');
+            
+            // Try to autoplay
+            const playPromise = videoElement.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => console.log("Autoplay blocked."));
+            }
+            
+            // Clear any existing timeupdate listeners
+            videoElement.ontimeupdate = null;
+            
+            // Add timeupdate listener to update description based on video progress (optional enhancement)
+            videoElement.ontimeupdate = function() {
+                // If you want to show different descriptions at different times
+                // You could implement time-based descriptions here
+                // For example: if(videoElement.currentTime > 30) { updateDescription('Second part explanation...'); }
+            };
+        }
+
+        function closeModal(event) {
+            if (event.target === modal) closeModalBtn();
+        }
+
+        function closeModalBtn() {
+            modal.classList.remove('active');
+            videoElement.pause();
+            videoElement.ontimeupdate = null; // Remove event listener
+            setTimeout(() => { 
+                videoElement.src = ""; 
+                videoDescriptionText.textContent = "Description will appear here...";
+            }, 300);
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") closeModalBtn();
+        });
+        
+        // Ensure description stays visible even when video controls are shown
+        videoElement.addEventListener('play', function() {
+            videoDescriptionText.style.opacity = '1';
+        });
+        
+        videoElement.addEventListener('pause', function() {
+            videoDescriptionText.style.opacity = '0.9';
         });
     </script>
 </body>
