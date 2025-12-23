@@ -39,7 +39,7 @@ Some components require **progressive deformation** that cannot be achieved in a
 
 ---
 
-# 4. Heading Operation (Application of Multi-Step Forging)
+## 4. Heading Operation (Application of Multi-Step Forging)
 
 Heading is an **upsetting process** used to produce a larger head on the end of a rod or wire.  
 Used for: **bolts, screws, rivets, nails, fasteners.**
@@ -67,7 +67,7 @@ Advantages:
 
 ---
 
-# 5. Valve Forming (Multi-Step Forging)
+## 5. Valve Forming (Multi-Step Forging)
 
 A **valve** controls fluid flow in pipelines, engines, compressors and many industrial applications.
 
@@ -106,7 +106,7 @@ A **valve** controls fluid flow in pipelines, engines, compressors and many indu
 
 ---
 
-# 6. Pressure Relief Valves (Safety Devices)
+## 6. Pressure Relief Valves (Safety Devices)
 
 Used to protect equipment from over-pressure failures in boilers, reactors, storage tanks, pipelines.
 
@@ -119,13 +119,13 @@ Each operates differently but serves the same purpose—prevent catastrophic pre
 
 ---
 
-# 7. Steam Traps
+## 7. Steam Traps
 Devices placed in steam lines to remove **condensate** and **non-condensable gases**.  
 Checked using visual, thermal or acoustic analysis.
 
 ---
 
-# 8. Wheel Rim Cover – Manufacturing (Cold Forging + Punching)
+## 8. Wheel Rim Cover – Manufacturing (Cold Forging + Punching)
 Method:
 1. **Punching holes** in aluminum sheet  
 2. **Punching windows**  
@@ -134,7 +134,7 @@ Method:
 
 ---
 
-# 9. Summary of Multi-Step Forging Procedure
+## 9. Summary of Multi-Step Forging Procedure
 1. Heat billet  
 2. Use multiple dies sequentially  
 3. Control deformation at each stage  
@@ -143,7 +143,7 @@ Method:
 
 ---
 
-# 10. Applications of Multi-Step Forging
+## 10. Applications of Multi-Step Forging
 - Bolts, screws, rivets  
 - Valves and valve heads  
 - Connecting rods  
