@@ -46,6 +46,8 @@
 
 </body>
 </html>-->
+
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -448,5 +450,348 @@
             overlay.classList.toggle('active');
         }
     </script>
+</body>
+</html>--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Step Forging Simulations</title>
+  <style>
+    :root {
+      --sidebar-width: 280px;
+      --bg-main: #f9f9f9;      /* Off-white background */
+      --bg-sidebar: #ececec;   /* Light grey sidebar */
+      --text-dark: #333333;    /* Main text */
+      --accent: #666666;       /* Subtle accents - Grey */
+      --active: #003366;       /* DEI Blue for active state/emphasis */
+      --border: #d1d1d1;       /* Light grey borders */
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--bg-main);
+      color: var(--text-dark);
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    /* --- Hamburger Menu Icon --- */
+    .menu-toggle {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 1000;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 10px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--text-dark);
+    }
+
+    /* --- Sidebar Navigation --- */
+    .sidebar {
+      position: fixed;
+      left: calc(-1 * var(--sidebar-width)); /* Hidden on mobile */
+      top: 0;
+      width: var(--sidebar-width);
+      height: 100%;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 999;
+      padding-top: 60px;
+      padding-bottom: 40px;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+
+    .sidebar.active {
+      transform: translateX(var(--sidebar-width));
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      font-size: 1rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
+
+    .sidebar-category {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin: 20px 0 8px 25px;
+      letter-spacing: 0.5px;
+    }
+
+    .menu-btn {
+      width: 85%;
+      display: block;
+      margin: 6px auto;
+      padding: 12px 15px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--text-dark);
+      text-align: left;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .menu-btn:hover {
+      background: var(--text-dark);
+      color: #ffffff;
+      border-color: var(--text-dark);
+    }
+
+    .menu-btn.active {
+      background: var(--active);
+      color: #ffffff;
+      border-color: var(--active);
+    }
+
+    /* --- Main View --- */
+    .content {
+      padding: 20px;
+      margin-top: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: margin-left 0.3s ease;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--accent);
+      margin-bottom: 20px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .video-container {
+      width: 100%;
+      max-width: 950px;
+      background: #fff;
+      padding: 8px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      box-sizing: border-box;
+    }
+
+    video {
+      width: 100%;
+      display: block;
+      border-radius: 8px;
+      background: #000;
+    }
+
+    /* Description Box Styling */
+    .desc-container {
+      width: 100%;
+      max-width: 950px;
+      background: #fff;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+      box-sizing: border-box;
+    }
+
+    .desc-title {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--active);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .desc-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    /* Dim background when menu is open */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 998;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    /* --- Desktop Logic --- */
+    @media (min-width: 1024px) {
+      .sidebar {
+        left: 0;
+        transform: none;
+      }
+      .content {
+        margin-left: var(--sidebar-width);
+      }
+      .menu-toggle, .overlay {
+        display: none;
+      }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+  
+  <button class="menu-toggle" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <div class="sidebar" id="sidebar">
+    <h2>Multi-Step Forging</h2>
+
+    <div class="sidebar-category">Simulation Setups</div>
+    <button class="menu-btn active" onclick="loadSim('MSF1', this)">SETUP 1: UPSET STAGE</button>
+    <button class="menu-btn" onclick="loadSim('MSF2', this)">SETUP 2: BLOCKER STAGE</button>
+
+    <div class="sidebar-category">Analysis & Data</div>
+    <button class="menu-btn" onclick="loadSim('MSF3', this)">STRAIN & FORCE ANALYSIS 1</button>
+    <button class="menu-btn" onclick="loadSim('MSF4', this)">STRAIN & FORCE ANALYSIS 2</button>
+    <button class="menu-btn" onclick="loadSim('MSF5', this)">FRONT & TOP VIEW</button>
+
+    <div class="sidebar-category">Valve Forging</div>
+    <button class="menu-btn" onclick="loadSim('ValveSetup', this)">SETUP VISUALIZATION</button>
+    <button class="menu-btn" onclick="loadSim('ValveCut', this)">CUT SECTION VIEW</button>
+    <button class="menu-btn" onclick="loadSim('ValveCurve', this)">FORCE CURVE GRAPH</button>
+    <button class="menu-btn" onclick="loadSim('ValveFinal', this)">FINAL PROCESS ANIMATION</button>
+    <button class="menu-btn" onclick="loadSim('ValveMesh', this)">STEP 1: MESH ANALYSIS</button>
+    <button class="menu-btn" onclick="loadSim('ValveStrain', this)">STEP 2: STRAIN MAP</button>
+    <button class="menu-btn" onclick="loadSim('ValveGraph', this)">STEP 3: GRAPH ANALYSIS</button>
+
+    <div class="sidebar-category">Hub Cap Mfg</div>
+    <button class="menu-btn" onclick="loadSim('Hub1', this)">STEP 1: DEFORMATION</button>
+    <button class="menu-btn" onclick="loadSim('Hub1Sec', this)">STEP 1: SECTION VIEW</button>
+    <button class="menu-btn" onclick="loadSim('Hub2', this)">STEP 2: INTERMEDIATE</button>
+    <button class="menu-btn" onclick="loadSim('Hub2Sec', this)">STEP 2: SECTION VIEW</button>
+    <button class="menu-btn" onclick="loadSim('Hub3', this)">STEP 3: FINAL FORM</button>
+    <button class="menu-btn" onclick="loadSim('Hub3Sec', this)">STEP 3: SECTION VIEW</button>
+
+    <div class="sidebar-category">Miscellaneous</div>
+    <button class="menu-btn" onclick="loadSim('Heading', this)">HEADING PROCESS</button>
+    <button class="menu-btn" onclick="loadSim('BallPeen', this)">BALL PEEN HAMMER</button>
+  </div>
+
+  <div class="content">
+    <h1 id="sim-title">Setup 1: Upset Stage</h1>
+    
+    <div class="video-container">
+      <video id="sim-video" controls playsinline>
+        <source src="MultiStep/MSF1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="desc-container">
+      <span class="desc-title">Description</span>
+      <div id="sim-desc" class="desc-text">
+        Visualization of the initial Upset Stage (Step 1). Observe the workpiece placement between the dies.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Data Object holding all paths and descriptions
+    const simData = {
+        // Setups
+        "MSF1": { title: "Setup 1: Upset Stage", src: "MultiStep/MSF1.mp4", desc: "Visualization of the initial Upset Stage (Step 1). Observe the workpiece placement between the dies." },
+        "MSF2": { title: "Setup 2: Blocker Stage", src: "MultiStep/MSF2.mp4", desc: "Visualization of the Blocker Stage (Step 2). The die configuration changes to shape the pre-form." },
+        
+        // Analysis
+        "MSF3": { title: "Strain & Force Analysis 1", src: "MultiStep/MSF3.mp4", desc: "Analysis of the strain distribution and forging force required during the initial upsetting phase." },
+        "MSF4": { title: "Strain & Force Analysis 2", src: "MultiStep/MSF4.mp4", desc: "Continued analysis of internal stresses and force requirements during the secondary blocker stage." },
+        "MSF5": { title: "Front & Top View Analysis", src: "MultiStep/MSF5.mp4", desc: "Top and Front views of the multi-step process, providing a geometric perspective of the deformation." },
+
+        // Valve Forging
+        "ValveSetup": { title: "Valve Forging: Setup", src: "MultiStep/ValveForging/ValveForgingSetup.mp4", desc: "Initial die setup for the manufacturing of an engine valve." },
+        "ValveCut": { title: "Valve Forging: Cut Section", src: "MultiStep/ValveForging/ValveForgingCutSection.mp4", desc: "Cross-sectional view showing the internal material flow during the forging process." },
+        "ValveCurve": { title: "Forging Force Curve", src: "MultiStep/ValveForging/ValveforgingCurve.mp4", desc: "Graphical representation of the forging load vs. stroke during the valve formation." },
+        "ValveFinal": { title: "Final Process Animation", src: "MultiStep/ValveForging/ValveForgingFinal.mp4", desc: "Complete simulation of the valve forging process from billet to final geometry." },
+        "ValveMesh": { title: "Step 1: Mesh Analysis", src: "MultiStep/ValveForging/ValveForgingMesh.mp4", desc: "Mesh deformation analysis during the initial contact phase." },
+        "ValveStrain": { title: "Step 2: Strain Distribution", src: "MultiStep/ValveForging/ValveForgingStrain.mp4", desc: "Equivalent strain distribution map across the valve head and stem." },
+        "ValveGraph": { title: "Step 3: Graph Analysis", src: "MultiStep/ValveForging/ValveForgingGraph.mp4", desc: "Final graphical analysis of process parameters." },
+
+        // Hub Cap
+        "Hub1": { title: "Hub Cap Step 1: Deformation", src: "MultiStep/HubCap/InitialHubCap.mp4", desc: "Initial deformation of the billet for the hub cap." },
+        "Hub1Sec": { title: "Hub Cap Step 1: Section View", src: "MultiStep/HubCap/InitialSectionView.mp4", desc: "Cross-section view of the initial stage." },
+        "Hub2": { title: "Hub Cap Step 2: Intermediate", src: "MultiStep/HubCap/MiddleHubCap.mp4", desc: "Intermediate stage of the hub cap forging." },
+        "Hub2Sec": { title: "Hub Cap Step 2: Section View", src: "MultiStep/HubCap/MiddleSectionView.mp4", desc: "Cross-section view of the intermediate stage." },
+        "Hub3": { title: "Hub Cap Step 3: Final Form", src: "MultiStep/HubCap/FinalHubCap.mp4", desc: "Final forging step completing the hub cap geometry." },
+        "Hub3Sec": { title: "Hub Cap Step 3: Section View", src: "MultiStep/HubCap/FinalSectionView.mp4", desc: "Cross-section view of the final product." },
+
+        // Misc
+        "Heading": { title: "Heading Process", src: "MultiStep/Heading.mp4", desc: "Simulation of the Heading process, commonly used for fastener manufacturing." },
+        "BallPeen": { title: "Ball Peen Hammer Forging", src: "MultiStep/BallPeen.mp4", desc: "Simulation of a Ball Peen Hammer head being forged." }
+    };
+
+    function toggleMenu() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      sidebar.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    function loadSim(key, btnElement) {
+      const data = simData[key];
+      if (!data) return;
+
+      // Update Text
+      document.getElementById('sim-title').innerText = data.title;
+      document.getElementById('sim-desc').textContent = data.desc;
+
+      // Update Video
+      const video = document.getElementById('sim-video');
+      video.src = data.src;
+      video.load();
+      video.play().catch(e => console.log("Autoplay blocked"));
+
+      // Update Active Button State
+      if(btnElement) {
+        document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
+        btnElement.classList.add('active');
+      }
+
+      // Auto-close menu on small screens
+      if (window.innerWidth < 1024) {
+        toggleMenu();
+      }
+    }
+  </script>
 </body>
 </html>
