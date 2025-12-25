@@ -1,0 +1,594 @@
+<!DOCTYPE html><html lang="en"><head>
+      <!--Google Tag Manager-->
+      <script class="gtm">
+        var dataLayer = [{
+        'labName': 'Virtual Lab',
+        'discipline': 'Test',
+        'college': 'DLBG',
+        'phase': 'Testing',
+        'expName': 'MULTI STEP FORGING',
+        'expShortName': 'multistep-forging'
+        }];
+    
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5NMQ9NQ');
+      </script>
+      <!--End Google Tag Manager-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    
+    	<meta name="experiment-short-name" content="multistep-forging">
+    	<meta name="developer-institute" content="DLBG">
+    	<meta name="learning-unit" content="MULTI STEP FORGING">
+    	<meta name="task-name" content="Theory">
+    
+    <!-- For iPhone -->
+    <meta name="msapplication-TileColor" content="#4076e0">
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#4076e0">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#4076e0">
+    <title>Virtual Labs</title>
+    <link rel="shortcut icon" href="./assets/images/favicon.ico">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&amp;family=Raleway&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/css/github-markdown.min.css">
+    <link rel="stylesheet" href="./assets/css/vlabs-style.css">
+    <link rel="stylesheet" href="./assets/css/toast.css">
+    <link rel="stylesheet" href="./assets/katex_assets/katex.min.css">
+    
+    <script src="./assets/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+      h1 {
+      font-size: 1.8rem;
+      }
+      h2 {
+      font-size: 1.4rem;
+      }
+      h3 {
+      font-size: 1.2rem;
+      }
+
+      h2, h3 {
+      font-weight: 800;
+      }
+    </style>
+    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"></head>
+  <body class="p-0 container-fluid vlabs-page d-flex flex-column justify-content-between">
+      <!--Google Tag Manager (noscript)-->
+      <noscript class="gtm">
+        <iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-5NMQ9NQ" style="display:none;visibility:hidden" width="0">
+        </iframe>
+      </noscript>
+      <!--End Google Tag Manager (noscript)-->
+  
+      <header class="vlabs-header sticky-top bg-white">
+        <nav class="p-0 navbar navbar-light d-flex align-items-stretch">
+          
+          <button class="navbar-toggler px-4" type="button" onclick="toggle()">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="d-flex justify-content-center">        
+            <a href="https://vlab.co.in" class="navbar-brand">
+              <img src="./assets/images/vlabs-color-small-moe.jpg" alt="vlabs logo" class="vlabs-logo">
+            </a>
+          </div>
+          
+          <div id="headerNavbar" class="d-none border-top flex-grow-1 d-lg-flex align-items-center justify-content-end">
+            <div class="svc-rating-display">
+                <rating-display spreadsheetid="1x12nhpp0QvnsA6x-O1sV4IA9SAbfVsq_wiexWkutOmU" sheetname="Experiment-Database" columnname="Experiment Short Name" columnvalue="multistep-forging" imagesdirectory="/plugins/svc-rating/images/">
+                </rating-display>
+            </div>      <div class="svc-rating-submit">
+                <rating-submit title="Rate" this="" experiment="">
+                </rating-submit>
+            </div>      <bug-report id="bug-report" title="[BUG REPORT] MULTI STEP FORGING" page-type="text" context-info="{&quot;organisation&quot;:&quot;Virtual Labs&quot;,&quot;developer_institute&quot;:&quot;DLBG&quot;,&quot;expname&quot;:&quot;MULTI STEP FORGING&quot;,&quot;labname&quot;:&quot;Virtual Lab&quot;,&quot;phase&quot;:&quot;Testing&quot;}" checkbox-json="{&quot;text&quot;:[&quot;Insufficient Content&quot;],&quot;video&quot;:[&quot;Insufficient Content&quot;],&quot;assesment&quot;:[&quot;Incorrect Options&quot;,&quot;Incorrect Answer&quot;,&quot;Incorrect Question&quot;],&quot;assessment&quot;:[&quot;Incorrect Options&quot;,&quot;Incorrect Answer&quot;,&quot;Incorrect Question&quot;],&quot;simulation&quot;:[&quot;Simulation Not Working&quot;,&quot;Incorrect Results/Observations&quot;,&quot;Insufficient/Incorrect Instructions&quot;],&quot;DEFAULT&quot;:[&quot;Page Not Loading&quot;,&quot;Content Not Visible&quot;,&quot;Incorrect Content&quot;]}" button_style="border: none; color: #fff; background-color: #288ec8; text-align: center; font-size: 1.05rem; border-radius: 1em;padding: 0.6em 1.2em; margin: 0 10px" position="override" custom_button_class="v-button"></bug-report>
+          </div>
+        </nav>
+      </header>
+      <div class="container-fluid flex-fill d-flex flex-column vlabs-page-main">
+        <div class="row d-flex justify-content-between">
+          <div class="flex-column">
+          <div class="row py-4 px-4 breadcrumbs">
+          	<div class="title is-4 tools">Tools</div>
+          	<span class="mx-2">
+          		<i aria-hidden="true" class="fa fa-angle-right"></i>
+          	</span>
+          	<a href="performance-report.html" class="my-2 mx-3" target="_blank">
+          		<button class="v-button">Performance Tool</button>
+          	</a>
+          	<a href="validator-report.html" class="my-2 mx-3" target="_blank">
+          		<button class="v-button">Validation Tool</button>
+          	</a>
+          </div>
+          </div>
+        </div>
+        <div class="row flex-grow-1 d-flex flex-nowrap flex-column flex-lg-row">
+          <div class="modal fade popupmenu" id="popupMenu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">
+                              <a href="https://vlab.co.in" class="navbar-brand">
+                                  <img src="./assets/images/vlabs-color-small-moe.jpg" alt="vlabs logo" class="vlabs-logo">
+                              </a>
+                          </h5>
+                          <button type="button" class="btn-close align-self-center" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body nav-menu">
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="index.html" class="p-2 ">
+                                      Aim
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="theory.html" class="p-2  current-item ">
+                                      Theory
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="pretest.html" class="p-2 ">
+                                      Pretest
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="procedure.html" class="p-2 ">
+                                      Procedure
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="simulation.html" class="p-2 ">
+                                      Simulation
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="posttest.html" class="p-2 ">
+                                      Posttest
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="references.html" class="p-2 ">
+                                      References
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="feedback.html" class="p-2 ">
+                                      Feedback
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="nav flex-column sidebar nav-menu flex-shrink-0 px-lg-4 align-items-center align-items-lg-start hidden d-none d-lg-flex" id="menu">
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="index.html" class="p-2 ">
+                        Aim
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="theory.html" class="p-2  current-item ">
+                        Theory
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="pretest.html" class="p-2 ">
+                        Pretest
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="procedure.html" class="p-2 ">
+                        Procedure
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="simulation.html" class="p-2 ">
+                        Simulation
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="posttest.html" class="p-2 ">
+                        Posttest
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="references.html" class="p-2 ">
+                        References
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="feedback.html" class="p-2 ">
+                        Feedback
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+          </div>          <div class="vlabs-page-content px-5 pb-4 flex-grow-1 markdown-body">
+            <div class="text-center fix-spacing">
+              <h3 id="multi-step-forging">Multi Step Forging</h3>
+          
+            </div>
+              <p>Traditionally, forging was performed by a smith using hammer and anvil, and though the use of water power in the production and working of iron dates to the 12th century, the hammer and anvil are not obsolete. The smithy or forge has evolved over centuries to become a facility with engineered processes, production equipment, tooling, raw materials and products to meet the demands of modern industry.</p>
+          <p>In modern times, industrial forging is done either with presses or with hammers powered by compressed air, electricity, hydraulics or steam.</p>
+          <p>Forged items have long been prized for their superior strength and durability. Forging a metal improves the following:</p>
+          <ol>
+          <li>The metal is compacted and any voids or defects are reduced.</li>
+          <li>The grain flow is retained or modified to follow the new shape.</li>
+          <li>Less waste since material is removed to produce a given shape.</li>
+          <li>Materials which are hard to machine can be easily hot forged to shape.</li>
+          </ol>
+          <p><strong>Cold working</strong> is metal forming performed at room temperature.</p>
+          <p><strong>Hot working</strong> involves deformation of preheated material at temperatures above there crystallization temperature.</p>
+          <h3 id="need-of-multi-step-forging">Need Of Multi Step Forging</h3>
+          <p>In some forging Operations the shapes to be formed are such which needs to be progressively deformed. A group of dies are to be used in a proper sequence. In every pass the die is changed. The value of force also needs to be altered according to the operation.</p>
+          <h3 id="steps-of-multi-step-forging">Steps Of Multi Step Forging</h3>
+          <ol>
+          <li>All Dies of different shapes must be ready in proper sequence.</li>
+          <li>The billet at proper temperature is pressed by first die.</li>
+          <li>The billet of the previous pass is taken to the next die for second pressing.</li>
+          <li>The final product is obtained after the last pass.</li>
+          </ol>
+          <p><strong>Applications of Multi step forging:</strong> Heading Operation, Valve forming etc.</p>
+          <hr>
+          <h2 id="heading-operation">Heading Operation</h2>
+          <p>Heading process may be defined as an upsetting process, normally performed at the end of a round rod or wire or blank in order to produce a larger cross-section. Some of the products made by heading process are heads of bolts, screws, rivets, nails and other fasteners. Heading processes can be carried out cold, warm or hot. Heading operation is performed on the machines known as headers. These machines are highly automated. Production rates are hundreds of pieces per minutes for the small parts. Heading operation can be combined with cold-extrusion processes to make various parts.</p>
+          <p>An important aspect of the heading operation is the tendency for the bar to buckle if its unsupported length-to-diameter ratio is very high. This ratio is limited to less than 3:1, but it can be higher depending on the die geometry.</p>
+          <h3 id="steps-of-heading-process">STEPS OF HEADING PROCESS</h3>
+          <p>Heading operation is not a single step process. this operation is carried in three steps. The complete heading process is shown in following images.</p>
+          <p><strong>Step-1:</strong>
+          In this step, the billet or the wire is fed from a mechanical coil through a pre-straightening machine. The straightened wire flows directly into a machine that automatically cuts the wire at a designated length. The obtained piece is known as blank. It is passed to the next stage of the heading operation.</p>
+          <p><img src="images/Upsetting/Heading/Heading1.png" alt="Heading Step 1"></p>
+          <p><strong>Step-2:</strong>
+          In this step, the billet is initially deformed by the punch of the header machine. The deformation is usually very less so that material can be formed during next stages. This stage is also known as pre-forming operation.</p>
+          <p><img src="images/Upsetting/Heading/Heading2.png" alt="Heading Step 2"></p>
+          <p><strong>Step-3:</strong>
+          In this stage the tapered head is obtained after heading operation. The blank head is severely deformed during the process and hence its properties improves. The temperature of the blank head rises sharply due to deformation.</p>
+          <p><img src="images/Upsetting/Heading/Heading3.png" alt="Heading Step 3"></p>
+          <p><strong>Step-4:</strong>
+          In this stage final product is formed by the deformation of the taper head into round head. The round impression punch press the head and finally round head bolt is obtained. Similar steps are utilised to form hexagonal ,square and flat bolt and screws.</p>
+          <p><img src="images/Upsetting/Heading/Heading4.png" alt="Heading Step 4"></p>
+          <p><strong>Final Product</strong></p>
+          <p><img src="images/Upsetting/Heading/Heading5.png" alt="Final Product"></p>
+          <hr>
+          <h3 id="applications-of-heading-operation">Applications of Heading Operation</h3>
+          <h4 id="screw">SCREW</h4>
+          <p>Screw is part of a family of threaded fasteners that include bolts and studs as well as specialized screws like carpenter's wood screws and the automotive cap screw. The threads (or grooves) can run right handed or left, tapered, straight, or parallel.</p>
+          <h4 id="manufacturing-process">Manufacturing process</h4>
+          <p><strong>Machining:</strong>
+          Machining is only used on unique designs or with screws too small to be made any other way. The machining process is exact, but too time consuming, wasteful, and expensive.</p>
+          <p><strong>Cold heading:</strong>
+          Wire is fed from a mechanical coil through a pre-straightening machine. The straightened wire flows directly into a machine that automatically cuts the wire at a designated length and die cuts the head of the screw blank into a pre-programmed shape. The heading machine utilizes either an open or closed die that either requires one punch or two punches to create the screw head. The closed (or solid) die creates a more accurate screw blank.</p>
+          <p><strong>Thread rolling:</strong>
+          Once cold headed, the screw blanks are automatically fed to the thread-cutting dies from a vibrating hopper. The hopper guides the screw blanks down a chute to the dies, while making sure they are in the correct feed position.
+          Threads can be cut into the blank by several methods. In the reciprocal method, the screw blank is rolled between two dies. In the cylindrical method, it is turned in the center of several rollers.
+          All three methods create higher quality screws than the machine-cut variety. This is because the thread is not literally cut into the blank during the thread-rolling process, rather it is impressed into the blank. Thus, no metal material is lost, and weakness in the metal is avoided. The threads are also more precisely positioned. The more productive of the thread-rolling techniques is by far the planetary rotary die, which creates screws at a speed of 60 to 2,000 parts per minute.</p>
+          <p><img src="images/Upsetting/Heading/Heading6.jpg" alt="Heading Application 1"> <img src="images/Upsetting/Heading/Heading7.jpg" alt="Heading Application 2"></p>
+          <hr>
+          <h2 id="valve-forming">Valve Forming</h2>
+          <p>A valve is a device that regulates, directs or controls the flow of a fluid (gases, liquids, fluidized solids, or slurries) by opening, closing, or partially obstructing various passageways. Valves are technically pipe fittings, but are usually discussed as a separate category. In an open valve, fluid flows in a direction from higher pressure to lower pressure. The simplest, and very ancient, valve is simply a freely hinged flap which drops to obstruct fluid (gas or liquid) flow in one direction, but is pushed open by flow in the opposite direction.</p>
+          <p>Valves are used in a variety of contexts, including industrial, military, commercial, residential, and transport. The industries in which the majority of valves are used are oil and gas, power generation, mining, water reticulation, sewerage and chemical manufacturing. In daily life, most noticeable are plumbing valves, such as taps for tap water. Other familiar examples include gas control valves on cookers, small valves fitted to washing machines and dishwashers, safety devices fitted to hot water systems, and valves in car engines. In nature, veins acting as valves are controlling the blood circulation; heart valves control the flow of blood in the chambers of the heart and maintain the correct pumping action. Valves play a vital role in industrial applications ranging from transportation of drinking water to control of ignition in a rocket engine.</p>
+          <p><img src="images/Upsetting/Valve.png" alt="Valve">
+          <em>Valve</em></p>
+          <p>Valves may be operated manually, either by a handle, lever or pedal. Valves may also be automatic, driven by changes in pressure, temperature, or flow. These changes may act upon a diaphragm or a piston which in turn activates the valve, examples of this type of valve found commonly are safety valves fitted to hot water systems or boilers. More complex control systems using valves requiring automatic control based on an external input (i.e., regulating flow through a pipe to a changing set point) require an actuator. An actuator will stroke the valve depending on its input and set-up, allowing the valve to be positioned accurately, and allowing control over a variety of requirements.</p>
+          <h3 id="types-of-valve">Types of Valve</h3>
+          <p>Valve can be categorized into the following types:</p>
+          <ul>
+          <li><strong>Ball Valve</strong> - for on/off control without pressure drop, and ideal for quick shut-off since a 90 turn offers complete shut-off angle, compared to multiple turns required on most manual valves.</li>
+          <li><strong>Butterfly valve</strong> - for flow regulation in large pipe diameters.</li>
+          <li><strong>Ceramic Disc valve</strong> - used mainly in high duty cycle applications or on abrasive fluids. Ceramic disc can also provide Class IV seat leakage.</li>
+          <li><strong>Check valve</strong> - or non-return valve, allows the fluid to pass in one direction only.</li>
+          <li><strong>Choke valve</strong> - a valve that raises or lowers a solid cylinder which is placed around or inside another cylinder which has holes or slots. Used for high pressure drops found in oil and gas wellheads.</li>
+          <li><strong>Diaphragm valve</strong> - which controls flow by a movement of a diaphragm. Upstream pressure, downstream pressure, or an external source (e.g., pneumatic, hydraulic, etc.) can be used to change the position of the diaphragm.</li>
+          <li><strong>Gate valve</strong> - mainly for on/off control, with low pressure drop.</li>
+          <li><strong>Globe valve</strong> - good for regulating flow.</li>
+          <li><strong>Knife valve</strong> - similar to a gate valve, but usually more compact. Often used for slurries or powders on/off control.</li>
+          <li><strong>Needle valve</strong> - for accurate flow control.</li>
+          <li><strong>Pinch valve</strong> - for slurry flow regulation.</li>
+          <li><strong>Piston valve</strong> - for regulating fluids that carry solids in suspension.</li>
+          <li><strong>Plug valve</strong> - slim valve for on/off control but with some pressure drop.</li>
+          <li><strong>Spool valve</strong> - for hydraulic control</li>
+          <li><strong>Thermal expansion valve</strong> - used in refrigeration and air conditioning systems.</li>
+          </ul>
+          <p>There is a vast abundance of valve types available for implementation into systems. The valves most commonly used in processes are ball valves, butterfly valves, globe valves, and plug valves. A summary of these four valve types and their relevant applications is in the table below.</p>
+          <table>
+          <thead>
+          <tr>
+          <th align="left">Valve Type</th>
+          <th align="left">Application</th>
+          <th align="left">Other information</th>
+          </tr>
+          </thead>
+          <tbody><tr>
+          <td align="left">Ball</td>
+          <td align="left">Flow is on or off</td>
+          <td align="left">Easy to clean</td>
+          </tr>
+          <tr>
+          <td align="left">Butterfly</td>
+          <td align="left">Good flow control at high capacities</td>
+          <td align="left">Economical</td>
+          </tr>
+          <tr>
+          <td align="left">Globe</td>
+          <td align="left">Good flow control</td>
+          <td align="left">Difficult to clean</td>
+          </tr>
+          <tr>
+          <td align="left">Plug</td>
+          <td align="left">Extreme on/off situations</td>
+          <td align="left">More rugged, costly than ball valve</td>
+          </tr>
+          </tbody></table>
+          <p>Following is a detailed description of the four main valve types:</p>
+          <p><strong>1. Ball Valves:</strong>
+          A ball valve is a valve with a spherical disc, the part of the valve which controls the flow through it. The sphere has a hole, or port, through the middle so that when the port is in line with both ends of the valve, flow will occur. When the valve is closed, the hole is perpendicular to the ends of the valve, and flow is blocked. There are four types of ball valves.
+          A full port ball valve has an over sized ball so that the hole in the ball is the same size as the pipeline resulting in lower friction loss. Flow is unrestricted, but the valve is larger. This is not required for general industrial applications as all types of valves used in industry like gate valves, plug valves, butterfly valves, etc have restrictions across the flow and does not permit full flow. This leads to excessive costs for full bore ball valves and is generally an unnecessary cost.
+          In reduced port ball valves, flow through the valve is one pipe size smaller than the valve's pipe size resulting in flow area becoming lesser than pipe. But the flow discharge remains constant as it is a multiplier factor of flow discharge (Q) is equal to area of flow (A) into velocity (V). A1V1 = A2V2; the velocity increases with reduced area of flow and decreases with increased area of flow.
+          A V port ball valve has either a 'v' shaped ball or a 'v' shaped seat. This allows the orifice to be opened and closed in a more controlled manner with a closer to linear flow characteristic. When the valve is in the closed position and opening is commenced the small end of the 'v' is opened first allowing stable flow control during this stage. This type of design requires a generally more robust construction due to higher velocities of the fluids, which would quickly damage a standard valve.
+          A trunnion ball valve has a mechanical means of anchoring the ball at the top and the bottom, this design is usually applied on larger and higher pressure valves (say, above 10 cm and 40 bars).
+          Ball valves are good for on/off situations. A common use for a ball valve is the emergency shut off for a sink.</p>
+          <p><strong>2. Butterfly Valves:</strong>
+          Butterfly valves consist of a disc attached to a shaft with bearings used to facilitate rotation. The characteristics of the flow can be controlled by changing the design of the disk being used. For example, there are designs that can be used in order to reduce the noise caused by a fluid as it flows through. Butterfly valves are good for situations with straight flow and where a small pressure drop is desired. There are also high performance butterfly valves. They have the added benefit of reduced torque issues, tight shutoff, and excellent throttling. It is necessary to consider the torque that will act on the valve. It will have water moving on both sides and when being used to throttle the flow through the valve it becomes a big factor. These valves are good in situations with high desired pressure drops. They are desirable due to their small size, which makes them a low cost control instrument. Some kind of seal is necessary in order for the valve to provide a leak free seal. A common example would be the air intake on older model automobiles.</p>
+          <p><strong>3. Globe Valves:</strong>
+          A globe valve is a type of valve used for regulating flow in a pipeline, consisting of a movable disk-type element and a stationary ring seat in a generally spherical body. The valve can have a stem or a cage, similar to ball valves, that moves the plug into and out of the globe. The fluid's flow characteristics can be controlled by the design of the plug being used in the valve. A seal is used to stop leakage through the valve. Globe valves are designed to be easily maintained. They usually have a top that can be easily removed, exposing the plug and seal. Globe valves are good for on, off, and accurate throttling purposes but especially for situations when noise and cavitation are factors. A common example would be the valves that control the hot and cold water for a kitchen or bathroom sink.</p>
+          <p><strong>4. Plug Valves:</strong>
+          Plug valves are valves with cylindrical or conically-tapered "plugs" which can be rotated inside the valve body to control flow through the valve. The plugs in plug valves have one or more hollow passageways going sideways through the plug, so that fluid can flow through the plug when the valve is open. Plug valves are simple and often economical. There are two types of plug valves. One has a port through a cylindrical plug that is perpendicular to the pipe and rotates to allow the fluid to proceed through the valve if in an open configuration. In the closed configuration, the cylinder rotates about its axis so that its port is no longer open to the flow of fluid. An advantage of these types of valves is that they are excellent for quick shutoff. The high friction resulting from the design, however, limits their use for accurate modulating/throttling.</p>
+          <p>The other type of plug valve is the eccentric plug valve. In this design, the plug rotates about a shaft in a fashion similar to a ball valve. To permit fluid flow, the plug can rotate so that it is out of the way of the seat. To block fluid flow, it rotates to the closed position where it impedes fluid flow and rests in the seat.</p>
+          <p>A common example would be a spray nozzle at the end of a garden hose.</p>
+          <hr>
+          <h3 id="pressure-relief-valves">Pressure Relief Valves</h3>
+          <p>Pressure relief valves are used as a safety device to protect equipment from over-pressure occurrences in any fluid process. Loss of heating and cooling, mechanical failure of valves, and poor draining and venting are some of the common causes of overpressure. The relieving system depends on the process at hand; pressure relief valves either bypass a fluid to an auxiliary passage or open a port to relieve the pressure to atmosphere. Some areas of common usage include reaction vessels and storage tanks. In the Petroleum Refining Industry, for example, the Fluidized Catalytic Cracker (FCC) reactor has several pressure relief valves to follow safety codes and procedures on such a high pressure/high temperature process. Each of the pressure relief valves have different levels of pressure ratings to release different amounts of material to atmosphere in order to minimize environmental impact.</p>
+          <p><strong>There are three examples of pressure relief valves:</strong></p>
+          <p><strong>I. Conventional Spring Loaded Safety Valves:</strong>
+          As the pressure rises, this causes a force to be put on the valve disc. This force opposes the spring force until at the set pressure the forces are balanced and the disc will start to lift. As the pressure continues to rise, the spring compresses more, further lifting the disc and alleviating the higher pressure. As the pressure inside the vessel decreases, the disc returns to its normal closed state.</p>
+          <ul>
+          <li><strong>Advantages:</strong> a) Most reliable type b) Versatile</li>
+          <li><strong>Disadvantages:</strong> Pressure relief is affected by back pressure</li>
+          </ul>
+          <p><strong>II. Bellows Spring Loaded Safety Relief Valve:</strong>
+          The bellows spring loaded safety relief valve has the same principle as the conventional spring valve, with the exception of a vent located on the side of the valve. This vent lets releases the contents of the valve out to the surrounding environment.</p>
+          <ul>
+          <li><strong>Advantages:</strong><ul>
+          <li>a) Pressure relief is not affected by back pressure</li>
+          <li>b) Can handle higher built-up back pressure</li>
+          <li>c) Spring is protected from corrosion</li>
+          </ul>
+          </li>
+          <li><strong>Disadvantages:</strong><ul>
+          <li>a) Bellows can be susceptible to fatigue</li>
+          <li>b) Not environmentally friendly (can release of toxics into atmosphere)</li>
+          </ul>
+          </li>
+          </ul>
+          <p><strong>III. Pilot Assisted Safety Relief Valve:</strong>
+          The pilot operated safety relief valve is also similar to the conventional safety relief valve except a pneumatic diaphragm or piston is attached to the top. This piston can apply forces on the valve when the valve is closed to balance the spring force and applies additional sealing pressure to prevent leakage.</p>
+          <ul>
+          <li><strong>Advantages:</strong><ul>
+          <li>a) Pressure relief is not affected by back pressure</li>
+          <li>b) Can operate at 98% of set pressure</li>
+          <li>c) Less susceptible to chatter</li>
+          </ul>
+          </li>
+          <li><strong>Disadvantages:</strong><ul>
+          <li>a) Pilot is susceptible to plugging</li>
+          <li>b) Has limited chemical use</li>
+          <li>c) Condensation can cause problems with the valve</li>
+          <li>d) Potential for back flow</li>
+          </ul>
+          </li>
+          </ul>
+          <hr>
+          <h3 id="steam-traps">Steam Traps</h3>
+          <p>Steam traps are devices that exist in low lying places within a pressurized steam line to release condensate and non-condensable gases from the system. Steam lines in industry are used to open/close control valves, heat trace pipelines to prevent freezing, etc. These steam traps are used in industry to save money on the prevention of corrosion and loss of steam. When these traps fail, it can mean a lot of money for the industry. There can be several hundred to several thousand in one process unit, therefore it is important to maintain and check the condition of each trap annually. The checks can be done by visual, thermal, or acoustic techniques. Many suppliers have equipment to read the flow within the pipeline to see if it is: blocked, cold, leaking, working.</p>
+          <hr>
+          <h2 id="wheel-rim-cover">Wheel Rim Cover</h2>
+          <p>A hubcap, wheel cover or wheel trim is a decorative disk on an automobile wheel that covers at least a central portion of the wheel. Cars with stamped steel wheels often use a full wheel cover that conceals the entire wheel. Cars with alloy wheels or styled steel wheels generally use smaller hubcaps, sometimes called center caps. Alternatively, wheel cover refers to an accessory covering an external rear-mounted spare tire (also known as a spare tire cover) found on some off-road or survival-type vehicles.</p>
+          <h3 id="brief-history">Brief History</h3>
+          <p>When pressed steel wheels became common by the 1940s, these were often painted the same color as the car body. Hubcaps expanded in size to cover the lug nuts that were used to mount these steel wheels. These hubcaps were typically made from chrome-plated or stainless steel. The next development was, as an option on more expensive cars, a chrome-plated trim ring that clipped onto the outer rim of the wheel, in addition to the center hubcap. Finally came the full wheel cover, which of course covered the entire wheel.</p>
+          <p><img src="images/WheelRimCover/Wheel.png" alt="Wheel Cover">
+          <em>Wheel Cover</em></p>
+          <p>By this time, specialty wheels of magnesium or aluminum alloy had come onto the market, and wheel covers were a cheap means of imitating the styling of those. Plastic wheel covers (known in the UK as wheel trims) appeared in the 1970s and became main stream in the 1980s. Plastic has largely replaced steel as the primary material for manufacturing hubcaps and trims, and where steel wheels are still used, the wheels are now generally painted black so the wheel is less visible through cutouts in the wheel trim. On modern automobiles, full-wheel hubcaps are most commonly seen on budget models and base trim levels, while upscale and performance-oriented models use alloy wheels. Modern aluminum alloy wheels generally use small removable center caps, similar in size to the earliest hubcaps.</p>
+          <h3 id="method-of-manufacturing">Method of Manufacturing</h3>
+          <p>It is constructed by stamping a blank from sheet metal. Windows spaced angularly about the cover defined by radially inwardly angled borders simulating depth are formed on the blank. A marginal circular periphery is formed into a peripheral flange. The front face of the wheel cover is machined on a numerically controlled lathe, such that the cutting tool closely follows the contour, to form fine spiral grooves simulating machine markings generally concentric about the center of the wheel, thereby exhibiting a machined finish. A retainer ring is mounted interiorly within the flange and the flange rolled there over to complete the assembly. This configuration provides a relatively inexpensive decorative wheel cover simulating a machined wheel. In the simulation an circular aluminum sheet is taken. In Step 1 the holes are punched over the sheet where as in step 2, the punching of windows of the hubcaps is taking place. After the operation is completed in Step-2 the wheel rim cover bowled using cold forging techniques in Step-3. Finally the curved edge of the wheel rim cover is trimmed over the lathes.</p>
+          <p><img src="images/WheelRimCover/Step1.png" alt="Step 1">
+          <em>Step 1</em></p>
+          <p><img src="images/WheelRimCover/Step2.png" alt="Step 2">
+          <em>Step-2</em></p>
+          <p><img src="images/WheelRimCover/Step3.png" alt="Step 3">
+          <em>Step-3</em></p>
+          <hr>
+          <p>© Metal Forming Virtual Simulation Lab - Dayalbagh Educational Institute (<a href="http://www.dei.ac.in">www.dei.ac.in</a>)</p>
+          
+          </div>
+          <div class="bug-report-mobile">
+              <bug-report id="bug-report" title="[BUG REPORT] MULTI STEP FORGING" page-type="text" context-info="{&quot;organisation&quot;:&quot;Virtual Labs&quot;,&quot;developer_institute&quot;:&quot;DLBG&quot;,&quot;expname&quot;:&quot;MULTI STEP FORGING&quot;,&quot;labname&quot;:&quot;Virtual Lab&quot;,&quot;phase&quot;:&quot;Testing&quot;}" checkbox-json="{&quot;text&quot;:[&quot;Insufficient Content&quot;],&quot;video&quot;:[&quot;Insufficient Content&quot;],&quot;assesment&quot;:[&quot;Incorrect Options&quot;,&quot;Incorrect Answer&quot;,&quot;Incorrect Question&quot;],&quot;assessment&quot;:[&quot;Incorrect Options&quot;,&quot;Incorrect Answer&quot;,&quot;Incorrect Question&quot;],&quot;simulation&quot;:[&quot;Simulation Not Working&quot;,&quot;Incorrect Results/Observations&quot;,&quot;Insufficient/Incorrect Instructions&quot;],&quot;DEFAULT&quot;:[&quot;Page Not Loading&quot;,&quot;Content Not Visible&quot;,&quot;Incorrect Content&quot;]}" position="override" button_style="
+                          position: fixed; 
+                          bottom: 20px;
+                          right: 20px;
+                          z-index: 1;
+                          font-size: 0;
+                          padding: 25px;
+                          border-radius: 50%;
+                          border: none;
+                          background-color: #0fc0ff;
+                          background-image: url(data:image/png;base64,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);
+                          background-repeat: no-repeat;
+                          background-position: center;
+                          background-size: 30px;
+                          filter: invert(1);">
+              </bug-report>
+          </div>        </div>
+      </div>
+      <footer class="text-light pt-2 vlabs-footer d-flex flex-column">
+        <div class="row px-5 mx-0">
+          <div class="col d-flex flex-column">
+            <span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">Community Links</span>
+            <a href="https://www.sakshat.ac.in/" class="text-light">Sakshat Portal</a>
+            <a href="http://outreach.vlabs.ac.in/" class="text-light">Outreach Portal</a>
+            <a href="https://vlab.co.in/faq" class="text-light">FAQ: Virtual Labs</a>
+          </div>
+          <div class="col d-flex flex-column">
+            <span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">Contact Us</span>
+            <span> Phone: General Information: 011-26582050 </span>
+            <span> Email: support@vlabs.ac.in </span>
+          </div>
+          <div class="col d-flex flex-column">
+            <span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">Follow Us</span>
+            <div class="social-links">
+      	<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #55acee;" href="https://twitter.com/TheVirtualLabs">
+      	  <i class="fab fa-twitter"></i>
+      	</a>
+      	<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #3b5998;" href="https://www.facebook.com/Virtual-Labs-IIT-Delhi-301510159983871/">
+      	  <i class="fab fa-facebook"></i>
+      	</a>
+      	<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #e52d27;" href="https://www.youtube.com/watch?v=asxRaOgk6a0">
+      	  <i class="fab fa-youtube"></i>
+      	</a>
+      	<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #2867B2;" href="https://in.linkedin.com/in/virtual-labs-008ba9136">
+      	  <i class="fab fa-linkedin"></i>
+      	</a>
+            </div>
+          </div>
+        </div>
+        <div class="m-0 py-2 text-center" style="font-family: &quot;Open Sans&quot;, sans-serif; background: #212121;">
+          <a class="text-primary font-weight-bold" href="https://www.gnu.org/licenses/agpl-3.0.en.html"> AGPL 3.0 </a>
+          &nbsp;&amp;&nbsp;
+          <a class="text-primary font-weight-bold" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"> Creative Commons (CC BY-NC-SA 4.0) </a>
+        </div>
+      </footer>
+    <script src="./assets/js/toggleSidebar.js"></script>
+    <script src="./assets/js/event-handler.js"></script>
+
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register("sw.js");
+        });
+      }
+    </script>
+  
+
+<script type="module" src="https://cdn.vlabs.ac.in/bug-report/vlabs-bug-report.js"></script><script type="module" src="/exp-multistep-forging-dei/plugins/svc-rating/index.js"></script><script type="module" src="/exp-multistep-forging-dei/plugins/svc-rating/config.js"></script><script type="module" src="https://apis.google.com/js/api.js"></script></body></html>
