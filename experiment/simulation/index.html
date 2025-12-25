@@ -49,554 +49,565 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Virtual Multi-Step Forging Lab</title>
-<style>body{font-family:'Segoe UI',Roboto,sans-serif;background-color:#f8fafc;color:#1e293b;margin:0;padding:0;display:flex;flex-direction:column;align-items:center;min-height:100vh}header{background:#fff;width:100%;padding:20px 0;box-shadow:0 2px 10px rgba(0,0,0,0.05);text-align:center;border-bottom:4px solid #2563eb}h1{margin:0;font-size:1.8rem;color:#2563eb;text-transform:uppercase;letter-spacing:1px}p.subtitle{margin:5px 0 0;color:#64748b;font-size:0.9rem}.container{display:flex;flex-wrap:wrap;gap:20px;max-width:1200px;width:95%;margin:30px auto;justify-content:center}.sim-window{flex:2;min-width:300px;background:#fff;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,0.08);padding:10px;position:relative;overflow:hidden}canvas{width:100%;height:450px;background:radial-gradient(circle at center,#f1f5f9 0%,#cbd5e1 100%);border-radius:8px;cursor:default;border:1px solid #94a3b8}.controls-overlay{position:absolute;bottom:25px;left:50%;transform:translateX(-50%);display:flex;gap:15px;z-index:10}.action-btn{background:#2563eb;color:#fff;border:none;padding:12px 35px;font-size:1.1rem;font-weight:700;border-radius:50px;cursor:pointer;box-shadow:0 4px 15px rgba(37,99,235,0.4);transition:all .2s ease;display:flex;align-items:center;gap:8px;text-transform:uppercase}.action-btn:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 8px 25px rgba(37,99,235,0.5);background:#1d4ed8}.action-btn:active{transform:translateY(1px)}.action-btn:disabled{background:#94a3b8;cursor:not-allowed;transform:none;box-shadow:none}.action-btn.pulse{animation:pulse 1.5s infinite}@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,99,235,0.7)}70%{box-shadow:0 0 0 15px rgba(37,99,235,0)}100%{box-shadow:0 0 0 0 rgba(37,99,235,0)}}.guide-panel{flex:1;min-width:300px;background:#fff;border-radius:12px;padding:25px;box-shadow:0 10px 25px rgba(0,0,0,0.08);border-left:5px solid #f59e0b}.step-indicator{display:flex;justify-content:space-between;margin-bottom:20px;border-bottom:1px solid #e2e8f0;padding-bottom:10px}.step-dot{width:35px;height:35px;border-radius:50%;background:#cbd5e1;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;transition:.3s;border:2px solid #fff;box-shadow:0 2px 5px rgba(0,0,0,0.1)}.step-dot.active{background:#2563eb;transform:scale(1.2);box-shadow:0 4px 10px rgba(37,99,235,0.3)}.step-dot.completed{background:#22c55e}h2.guide-title{margin-top:0;color:#1e293b;font-size:1.5rem}.guide-content{line-height:1.7;color:#475569;font-size:1rem}.guide-content b{color:#2563eb}.status-bar{margin-top:20px;background:#f0f9ff;padding:12px;border-radius:6px;color:#2563eb;font-weight:600;text-align:center;border:2px dashed #2563eb;transition:all 0.3s}.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;width:100%;margin-top:20px}.info-card{background:#f8fafc;padding:15px;border-radius:8px;font-size:.85rem;color:#64748b;border:1px solid #e2e8f0}.info-card strong{display:block;color:#1e293b;margin-bottom:5px;font-size:0.95rem}</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Forging | Virtual Lab - Dayalbagh Educational Institute</title>
+    <style>
+        :root {
+            --primary: #003366; /* DEI Academic Blue */
+            --bg: #f8f9fa;
+            --text-main: #2c3e50;
+            --text-light: #6c757d;
+            --shadow: 0 4px 20px rgba(0,0,0,0.05);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* --- Theme Colors --- */
+        .theme-blue { --theme-light: #eef7ff; --theme-accent: #2196f3; --theme-border: #bbdefb; }
+        .theme-teal { --theme-light: #e0f2f1; --theme-accent: #009688; --theme-border: #b2dfdb; }
+        .theme-indigo { --theme-light: #ede7f6; --theme-accent: #673ab7; --theme-border: #d1c4e9; }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #aaa; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- Header --- */
+        header {
+            background: #ffffff;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: relative; 
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--primary);
+            flex-shrink: 0;
+        }
+
+        .brand h1 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 2px;
+        }
+
+        .brand span {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* --- Main Layout --- */
+        main {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            animation: fadeIn 0.8s ease-out;
+            flex-grow: 1;
+        }
+
+        /* --- Accordion Cards --- */
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: background 0.3s ease;
+            position: relative;
+        }
+
+        .theme-blue .card-header:hover { background: #f5fafe; }
+        .theme-teal .card-header:hover { background: #f2fcfb; }
+        .theme-indigo .card-header:hover { background: #fbf9fd; }
+
+        .card-header::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 6px;
+            background: var(--theme-accent);
+            opacity: 0.7;
+        }
+
+        .card-header h2 {
+            font-size: 1.25rem;
+            color: #333;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .chevron {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: #f0f0f0;
+            width: 32px; height: 32px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+        }
+
+        /* --- Card Body --- */
+        .card-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            opacity: 0;
+            background-color: var(--theme-light); 
+        }
+
+        .card-content-wrapper {
+            padding: 1.5rem;
+            border-top: 1px solid var(--theme-border);
+        }
+
+        .card.active .card-body { max-height: 2000px; opacity: 1; }
+        .card.active .chevron {
+            transform: rotate(180deg);
+            background: var(--theme-accent);
+            color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .card.active .card-header h2 { color: var(--theme-accent); }
+
+        /* --- Content Styling --- */
+        .sub-section { margin-bottom: 2rem; }
+        .sub-section:last-child { margin-bottom: 0; }
+
+        .sub-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--theme-accent);
+            margin-bottom: 1rem;
+            font-weight: 800;
+            opacity: 0.8;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .sub-title::after {
+            content: ''; flex-grow: 1; height: 1px; background: var(--theme-border);
+        }
+
+        .sim-link {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.5rem;
+            background: white;
+            margin-bottom: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            border-left: 5px solid transparent;
+        }
+
+        .sim-link span { font-weight: 500; font-size: 0.95rem; }
+        .sim-link i { color: #ccc; font-size: 0.8rem; transition: 0.3s; }
+
+        .sim-link:hover {
+            transform: translateX(5px) translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--theme-accent);
+        }
+        .sim-link:hover span { color: var(--theme-accent); }
+        .sim-link:hover i { color: var(--theme-accent); transform: translateX(3px); }
+
+        /* --- UPDATED MODAL WITH PROMINENT DESCRIPTION --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 30, 60, 0.92);
+            backdrop-filter: blur(8px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000;
+            opacity: 0; visibility: hidden;
+            transition: var(--transition);
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white; 
+            width: 100%; 
+            max-width: 900px;
+            max-height: 90vh; 
+            border-radius: 16px; 
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            transform: scale(0.95); 
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+
+        .video-container {
+            width: 100%; 
+            background: #000; 
+            position: relative; 
+            padding-top: 56.25%;
+            flex-shrink: 0; 
+        }
+        .video-container video { 
+            position: absolute; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            display: block;
+        }
+
+        /* --- VIDEO DESCRIPTION AREA --- */
+        .video-description-container {
+            background: #f8f9fa;
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .video-description-label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+
+        .video-description-text {
+            font-size: 0.95rem;
+            color: #2c3e50;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            background: white;
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            border-left: 3px solid var(--primary);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .modal-details { 
+            padding: 1.8rem; 
+            overflow-y: auto; 
+            flex-grow: 1;
+        }
+        
+        .modal-header {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;
+        }
+
+        .modal-title { 
+            font-size: 1.3rem; 
+            color: var(--primary); 
+            font-weight: 700; 
+            line-height: 1.3;
+            flex-grow: 1;
+        }
+        
+        .close-btn {
+            background: #f8d7da; border: none;
+            min-width: 32px; height: 32px;
+            border-radius: 50%; color: #721c24;
+            cursor: pointer; font-size: 1.2rem;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.2s; margin-left: 15px;
+            flex-shrink: 0;
+        }
+        .close-btn:hover { background: #f5c6cb; transform: rotate(90deg); }
+
+        .modal-desc { 
+            color: #555; 
+            line-height: 1.7; 
+            font-size: 0.95rem; 
+            margin-top: 0.5rem;
+        }
+
+        footer {
+            text-align: center; padding: 2rem;
+            color: var(--text-light); font-size: 0.85rem;
+            border-top: 1px solid #eee; background: white;
+            flex-shrink: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .arrow::after { content: '➜'; font-family: sans-serif; }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .modal-content {
+                max-height: 95vh;
+            }
+            
+            .video-description-container {
+                padding: 1rem;
+            }
+            
+            .modal-details {
+                padding: 1.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
+    
 
+    <main>
+        <div class="card theme-blue" id="card1">
+            <div class="card-header" onclick="toggleCard('card1')">
+                <h2>Multi-Step Forging</h2>
+                <span class="chevron">▼</span>
+            </div>
+            <div class="card-body">
+                <div class="card-content-wrapper">
+                    <div class="sub-section">
+                        <div class="sub-title">Simulation Setups</div>
+                        <div class="sim-link" onclick="openSim('MSF1.mp4', 'Multi-step Forging Setup 1', 'Visualization of the initial Upset Stage (Step 1). Observe the workpiece placement between the dies.')">
+                            <span>Setup 1: Upset Stage</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('MSF2.mp4', 'Multi-step Forging Setup 2', 'Visualization of the Blocker Stage (Step 2). The die configuration changes to shape the pre-form.')">
+                            <span>Setup 2: Blocker Stage</span> <i class="arrow"></i>
+                        </div>
+                    </div>
 
-<div class="container">
-    <!-- Simulation Area -->
-    <div class="sim-window">
-        <canvas id="simCanvas"></canvas>
-        
-        <div class="controls-overlay">
-            <button id="actionBtn" class="action-btn pulse">Start Process</button>
-            <button id="resetBtn" class="action-btn" style="background: #64748b; display: none;">Reset Lab</button>
+                    <div class="sub-section">
+                        <div class="sub-title">Analysis & Data</div>
+                        <div class="sim-link" onclick="openSim('MSF3.mp4', 'Equivalent Strain & Force (Part 1)', 'Analysis of the strain distribution and forging force required during the initial upsetting phase.')">
+                            <span>Strain & Force Analysis 1</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('MSF4.mp4', 'Equivalent Strain & Force (Part 2)', 'Continued analysis of internal stresses and force requirements during the secondary blocker stage.')">
+                            <span>Strain & Force Analysis 2</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('MSF5.mp4', 'Orthographic Views', 'Top and Front views of the multi-step process, providing a geometric perspective of the deformation.')">
+                            <span>Front & Top View Analysis</span> <i class="arrow"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card theme-teal" id="card2">
+            <div class="card-header" onclick="toggleCard('card2')">
+                <h2>Applications: Valve Forging</h2>
+                <span class="chevron">▼</span>
+            </div>
+            <div class="card-body">
+                <div class="card-content-wrapper">
+                    <div class="sub-section">
+                        <div class="sub-title">Valve Forging - Stage 1</div>
+                        <div class="sim-link" onclick="openSim('ValveForging/ValveForgingSetup.mp4', 'Valve Forging: Setup', 'Initial die setup for the manufacturing of an engine valve.')">
+                            <span>Setup Visualization</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('ValveForging/ValveForgingCutSection.mp4', 'Valve Forging: Cut Section', 'Cross-sectional view showing the internal material flow during the forging process.')">
+                            <span>Cut Section View</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('ValveForging/ValveforgingCurve.mp4', 'Valve Forging: Force Curve', 'Graphical representation of the forging load vs. stroke during the valve formation.')">
+                            <span>Forging Force Graph</span> <i class="arrow"></i>
+                        </div>
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="sub-title">Valve Forging - Stage 2</div>
+                        <div class="sim-link" onclick="openSim('ValveForging/ValveForgingFinal.mp4', 'Valve Forging: Final Process', 'Complete simulation of the valve forging process from billet to final geometry.')">
+                            <span>Final Process Animation</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('ValveForging/ValveForgingMesh.mp4', 'Process Analysis: Step 1', 'Mesh deformation analysis during the initial contact phase.')">
+                            <span>Step 1: Mesh Analysis</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('ValveForging/ValveForgingStrain.mp4', 'Process Analysis: Step 2', 'Equivalent strain distribution map across the valve head and stem.')">
+                            <span>Step 2: Strain Distribution</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('ValveForging/ValveForgingGraph.mp4', 'Process Analysis: Step 3', 'Final graphical analysis of process parameters.')">
+                            <span>Step 3: Graph Analysis</span> <i class="arrow"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card theme-indigo" id="card3">
+            <div class="card-header" onclick="toggleCard('card3')">
+                <h2>Applications: Hub Cap & Misc</h2>
+                <span class="chevron">▼</span>
+            </div>
+            <div class="card-body">
+                <div class="card-content-wrapper">
+                    <div class="sub-section">
+                        <div class="sub-title">Hub Cap Manufacturing</div>
+                        <div class="sim-link" onclick="openSim('HubCap/InitialHubCap.mp4', 'Hub Cap: Step 1', 'Initial deformation of the billet for the hub cap.')">
+                            <span>Step 1: Deformation</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('HubCap/InitialSectionView.mp4', 'Hub Cap: Section 1', 'Cross-section view of the initial stage.')">
+                            <span>Step 1: Section View</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('HubCap/MiddleHubCap.mp4', 'Hub Cap: Step 2', 'Intermediate stage of the hub cap forging.')">
+                            <span>Step 2: Intermediate</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('HubCap/MiddleSectionView.mp4', 'Hub Cap: Section 2', 'Cross-section view of the intermediate stage.')">
+                            <span>Step 2: Section View</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('HubCap/FinalHubCap.mp4', 'Hub Cap: Step 3', 'Final forging step completing the hub cap geometry.')">
+                            <span>Step 3: Final Form</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('HubCap/FinalSectionView.mp4', 'Hub Cap: Section 3', 'Cross-section view of the final product.')">
+                            <span>Step 3: Section View</span> <i class="arrow"></i>
+                        </div>
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="sub-title">Miscellaneous</div>
+                        <div class="sim-link" onclick="openSim('Heading.mp4', 'Heading Process', 'Simulation of the Heading process, commonly used for fastener manufacturing.')">
+                            <span>Heading Process</span> <i class="arrow"></i>
+                        </div>
+                        <div class="sim-link" onclick="openSim('BallPeen.mp4', 'Ball Peen Hammer Forging', 'Simulation of a Ball Peen Hammer head being forged.')">
+                            <span>Ball Peen Hammer</span> <i class="arrow"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="videoModal" onclick="closeModal(event)">
+        <div class="modal-content">
+            <div class="video-container">
+                <video id="mainVideo" controls>
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <!-- NEW: Video Description Area -->
+            <div class="video-description-container">
+                <span class="video-description-label">Video Description</span>
+                <p class="video-description-text" id="videoDescriptionText">Description will appear here...</p>
+            </div>
+            <div class="modal-details">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modalTitle">Title</h3>
+                    <button class="close-btn" onclick="closeModalBtn()">×</button>
+                </div>
+                <p class="modal-desc" id="modalDesc">Additional details about the simulation...</p>
+            </div>
         </div>
     </div>
 
-    <!-- Educational Guide -->
-    <div class="guide-panel">
-        <div class="step-indicator">
-            <div class="step-dot active" id="dot1">1</div>
-            <div class="step-dot" id="dot2">2</div>
-            <div class="step-dot" id="dot3">3</div>
-            <div class="step-dot" id="dot4">4</div>
-        </div>
 
-        <h2 id="stepTitle" class="guide-title">Step 1: Wire Feeding & Cutting</h2>
-        <div id="stepContent" class="guide-content">
-            <p>The process begins with a <b>continuous wire coil</b> fed through a straightener. The machine automatically cuts the wire at a specific designated length to create a "Blank".</p>
-            <p><i>Task: Click the button to feed the wire and activate the shear blade.</i></p>
-        </div>
+    <script>
+        const basePath = "MultiStep/";
+        let currentDescription = "";
 
-        <div id="statusBox" class="status-bar">System Ready. Waiting for operator...</div>
-        
-        <div class="info-grid">
-            <div class="info-card">
-                <strong>Material</strong>
-                Low Carbon Steel / Alloy
-            </div>
-            <div class="info-card">
-                <strong>Process Temp</strong>
-                Increases during deformation
-            </div>
-            <div class="info-card">
-                <strong>L/D Ratio</strong>
-                &lt; 3:1 (To prevent buckling)
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    // --- CANVAS SETUP ---
-    const canvas = document.getElementById('simCanvas');
-    const ctx = canvas.getContext('2d');
-    const actionBtn = document.getElementById('actionBtn');
-    const resetBtn = document.getElementById('resetBtn');
-    const statusBox = document.getElementById('statusBox');
-
-    // Resize handling
-    function resizeCanvas() {
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    // --- STATE VARIABLES ---
-    let step = 1; 
-    let progress = 0; 
-    let particles = []; 
-    let shakeAmount = 0;
-
-    // --- CONFIG & DATA ---
-    const machine = {
-        wireColor: "#94a3b8",
-        hotColor: "#ef4444", // Red for heat
-        threadLines: [],
-        isActive: false
-    };
-
-    const stepsData = [
-        {
-            title: "Step 1: Wire Feeding & Cutting",
-            text: "In this step, the wire is fed from a mechanical coil. It flows into the machine where a shear blade automatically cuts it to a designated length. The obtained piece is known as a <b>Blank</b>.",
-            btn: "Feed & Cut",
-            status: "Feeding wire..."
-        },
-        {
-            title: "Step 2: Pre-forming (Upsetting)",
-            text: "The billet is pushed into the die. The punch initiates deformation. This is a 'pre-forming' operation to gather material at the end of the blank without buckling it. Note the slight temperature rise.",
-            btn: "Pre-form Head",
-            status: "Compressing material..."
-        },
-        {
-            title: "Step 3: Final Heading",
-            text: "The pre-formed head is severely deformed by a second blow. The metal flows into the die cavity to form the final head shape. <b>Heat is generated</b> due to rapid deformation.",
-            btn: "Forge Head",
-            status: "High pressure impact!"
-        },
-        {
-            title: "Step 4: Thread Rolling",
-            text: "The blank is passed between threading dies. Unlike cutting, rolling impresses the threads into the shank, maintaining grain flow and structural integrity.",
-            btn: "Roll Threads",
-            status: "Rolling threads..."
-        },
-        {
-            title: "Process Complete",
-            text: "The Bolt is finished! Cold heading creates high-quality fasteners with no material waste and superior strength compared to machining.",
-            btn: "Finish",
-            status: "Inspection Passed."
-        }
-    ];
-
-    // --- HELPER FUNCTIONS ---
-    function interpolateColor(color1, color2, factor) {
-        if (arguments.length < 3) { factor = 0.5; }
-        var result = result || "#";
-        var r1 = parseInt(color1.substring(1, 3), 16);
-        var g1 = parseInt(color1.substring(3, 5), 16);
-        var b1 = parseInt(color1.substring(5, 7), 16);
-        var r2 = parseInt(color2.substring(1, 3), 16);
-        var g2 = parseInt(color2.substring(3, 5), 16);
-        var b2 = parseInt(color2.substring(5, 7), 16);
-        var r = Math.round(r1 + factor * (r2 - r1));
-        var g = Math.round(g1 + factor * (g2 - g1));
-        var b = Math.round(b1 + factor * (b2 - b1));
-        return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-    }
-
-    // --- DRAWING COMPONENTS ---
-    
-    function drawFloor() {
-        ctx.beginPath();
-        ctx.moveTo(0, canvas.height * 0.75);
-        ctx.lineTo(canvas.width, canvas.height * 0.75);
-        ctx.lineWidth = 4;
-        ctx.strokeStyle = "#94a3b8";
-        ctx.stroke();
-        
-        // floor pattern
-        ctx.fillStyle = "rgba(0,0,0,0.05)";
-        ctx.fillRect(0, canvas.height * 0.75, canvas.width, canvas.height * 0.25);
-    }
-
-    function drawBlade(x, y) {
-        // Industrial Blade
-        ctx.fillStyle = "#334155";
-        ctx.beginPath();
-        ctx.moveTo(x, y); // Top Left
-        ctx.lineTo(x + 40, y); // Top Right
-        ctx.lineTo(x + 40, y + 120); // Bottom Right
-        ctx.lineTo(x + 20, y + 140); // Point
-        ctx.lineTo(x, y + 120); // Bottom Left
-        ctx.closePath();
-        ctx.fill();
-        
-        // Shine
-        ctx.fillStyle = "rgba(255,255,255,0.2)";
-        ctx.fillRect(x + 5, y, 10, 110);
-    }
-
-    function drawPunch(x, type="flat") {
-        const cy = canvas.height * 0.75;
-        // Ram
-        const grad = ctx.createLinearGradient(x, cy-50, x, cy+50);
-        grad.addColorStop(0, "#475569");
-        grad.addColorStop(0.5, "#94a3b8");
-        grad.addColorStop(1, "#475569");
-        
-        ctx.fillStyle = grad;
-        // The main driving block
-        ctx.fillRect(x - 300, cy - 40, 300, 80);
-        
-        // The Tool Head
-        ctx.fillStyle = "#1e293b";
-        if(type === "flat") {
-            ctx.fillRect(x, cy - 30, 20, 60);
-        } else {
-            // Shaped die punch
-            ctx.beginPath();
-            ctx.moveTo(x, cy - 30);
-            ctx.lineTo(x + 15, cy - 30);
-            ctx.lineTo(x + 15, cy + 30);
-            ctx.lineTo(x, cy + 30);
-            ctx.lineTo(x - 10, cy); // Cavity shape
-            ctx.fill();
-        }
-    }
-
-    function drawDie(opacity) {
-        if(opacity <= 0) return;
-        const cx = canvas.width / 2;
-        const cy = canvas.height * 0.75;
-        
-        ctx.globalAlpha = opacity;
-        
-        // Die Block
-        const grad = ctx.createLinearGradient(cx+50, cy-70, cx+150, cy+70);
-        grad.addColorStop(0, "#cbd5e1");
-        grad.addColorStop(1, "#64748b");
-        ctx.fillStyle = grad;
-        
-        ctx.fillRect(cx + 50, cy - 70, 120, 140);
-        ctx.strokeStyle = "#475569";
-        ctx.strokeRect(cx + 50, cy - 70, 120, 140);
-        
-        // Label
-        ctx.fillStyle = "#1e293b";
-        ctx.font = "bold 14px Arial";
-        ctx.fillText("STATIONARY DIE", cx + 55, cy + 90);
-        
-        ctx.globalAlpha = 1.0;
-    }
-
-    function drawBolt(x, w, length, headW, headH, heatLevel) {
-        const cy = canvas.height * 0.75;
-        
-        // Dynamic Color based on Heat
-        let baseColor = "#cbd5e1"; // Silver
-        let shineColor = "#f1f5f9";
-        
-        if (heatLevel > 0) {
-            baseColor = interpolateColor("#cbd5e1", "#ef4444", heatLevel); // Turn redder
-            shineColor = interpolateColor("#f1f5f9", "#fca5a5", heatLevel);
+        function toggleCard(cardId) {
+            const card = document.getElementById(cardId);
+            card.classList.toggle('active');
         }
 
-        const grad = ctx.createLinearGradient(x, cy-w/2, x, cy+w/2);
-        grad.addColorStop(0, "#64748b");
-        grad.addColorStop(0.2, baseColor);
-        grad.addColorStop(0.5, shineColor); // Shine
-        grad.addColorStop(0.8, baseColor);
-        grad.addColorStop(1, "#475569");
+        const modal = document.getElementById('videoModal');
+        const videoElement = document.getElementById('mainVideo');
+        const titleElement = document.getElementById('modalTitle');
+        const descElement = document.getElementById('modalDesc');
+        const videoDescriptionText = document.getElementById('videoDescriptionText');
 
-        ctx.fillStyle = grad;
-        
-        // Shank
-        ctx.fillRect(x, cy - w/2, length, w);
-        
-        // Head
-        if (headH > 0) {
-            const headX = x - headH;
-            // Head Gradient
-            const hGrad = ctx.createLinearGradient(headX, cy-headW/2, headX, cy+headW/2);
-            hGrad.addColorStop(0, "#475569");
-            hGrad.addColorStop(0.5, heatLevel > 0.5 ? "#fca5a5" : "#f1f5f9");
-            hGrad.addColorStop(1, "#475569");
+        function openSim(fileName, title, description) {
+            // Update video source
+            videoElement.src = basePath + fileName;
             
-            ctx.fillStyle = hGrad;
-            ctx.fillRect(headX, cy - headW/2, headH, headW);
+            // Update title
+            titleElement.textContent = title;
             
-            // Hexagon detail lines
-            ctx.strokeStyle = "rgba(0,0,0,0.2)";
-            ctx.beginPath();
-            ctx.moveTo(headX, cy - headW/4);
-            ctx.lineTo(headX + headH, cy - headW/4);
-            ctx.moveTo(headX, cy + headW/4);
-            ctx.lineTo(headX + headH, cy + headW/4);
-            ctx.stroke();
-        }
-
-        // Threads (Step 4)
-        if (machine.threadLines.length > 0) {
-            ctx.strokeStyle = "rgba(0,0,0,0.4)";
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            machine.threadLines.forEach(lx => {
-                ctx.moveTo(x + lx, cy - w/2);
-                ctx.lineTo(x + lx - 5, cy + w/2);
-            });
-            ctx.stroke();
-        }
-    }
-
-    // --- PARTICLES (Sparks/Chips) ---
-    class Particle {
-        constructor(x, y, type="spark") {
-            this.x = x;
-            this.y = y;
-            this.vx = (Math.random() - 0.5) * 15;
-            this.vy = (Math.random() - 1) * 15;
-            this.gravity = 0.8;
-            this.life = 1.0;
-            this.type = type;
-        }
-        update() {
-            this.vy += this.gravity;
-            this.x += this.vx;
-            this.y += this.vy;
+            // Set description in TWO places
+            currentDescription = description;
+            videoDescriptionText.textContent = description;
+            descElement.textContent = description;
             
-            // Bounce floor
-            if(this.y > canvas.height * 0.75) {
-                this.y = canvas.height * 0.75;
-                this.vy *= -0.6; // dampen
+            // Show modal
+            modal.classList.add('active');
+            
+            // Try to autoplay
+            const playPromise = videoElement.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => console.log("Autoplay blocked."));
             }
             
-            this.life -= 0.03;
-        }
-        draw() {
-            ctx.globalAlpha = this.life;
-            if(this.type === "spark") {
-                ctx.fillStyle = `rgb(255, ${Math.random()*200}, 0)`;
-                ctx.fillRect(this.x, this.y, 3, 3);
-            } else {
-                ctx.fillStyle = "#94a3b8";
-                ctx.fillRect(this.x, this.y, 4, 4);
-            }
-            ctx.globalAlpha = 1.0;
-        }
-    }
-
-    function spawnParticles(x, y, count, type="spark") {
-        for(let i=0; i<count; i++) {
-            particles.push(new Particle(x, y, type));
-        }
-    }
-
-    // --- MAIN LOOP ---
-    function animate() {
-        // Clear & Shake Effect
-        ctx.save();
-        if(shakeAmount > 0) {
-            let dx = (Math.random() - 0.5) * shakeAmount;
-            let dy = (Math.random() - 0.5) * shakeAmount;
-            ctx.translate(dx, dy);
-            shakeAmount *= 0.9; // Decay shake
-            if(shakeAmount < 0.5) shakeAmount = 0;
+            // Clear any existing timeupdate listeners
+            videoElement.ontimeupdate = null;
+            
+            // Add timeupdate listener to update description based on video progress (optional enhancement)
+            videoElement.ontimeupdate = function() {
+                // If you want to show different descriptions at different times
+                // You could implement time-based descriptions here
+                // For example: if(videoElement.currentTime > 30) { updateDescription('Second part explanation...'); }
+            };
         }
 
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawFloor();
-        
-        const cx = canvas.width / 2;
-        const cy = canvas.height * 0.75;
-
-        // --- STEP LOGIC ---
-        if (step === 1) {
-            // Wire feeding
-            let wireX = -300 + (progress * (cx + 50)); // Moves past center
-            drawBolt(wireX, 40, 800, 0, 0, 0); 
-            
-            // Cutter
-            let bladeY = cy - 200;
-            if(progress > 0.7) {
-                 bladeY = (cy - 160) + Math.sin((progress - 0.7) * 15) * 60;
-                 if(progress > 0.8 && progress < 0.82) {
-                     spawnParticles(cx - 50, cy - 20, 3, "spark");
-                 }
-            }
-            drawBlade(cx - 50, bladeY);
+        function closeModal(event) {
+            if (event.target === modal) closeModalBtn();
         }
 
-        else if (step === 2) {
-            drawDie(1);
-            // Blank
-            let blankX = cx - 50;
-            
-            // Punch
-            let punchX = (cx - 250) + (progress * 200);
-            drawPunch(punchX, "flat");
-            
-            // Deform: Head gets wider, slightly shorter
-            let headW = 40 + (progress * 15);
-            let headH = progress * 15;
-            // Heat: slight red
-            drawBolt(blankX, 40, 100, headW, headH, progress * 0.3);
-
-            if(progress > 0.9 && progress < 0.92) {
-                spawnParticles(blankX, cy, 5, "dust");
-                shakeAmount = 5; // Small shake
-            }
+        function closeModalBtn() {
+            modal.classList.remove('active');
+            videoElement.pause();
+            videoElement.ontimeupdate = null; // Remove event listener
+            setTimeout(() => { 
+                videoElement.src = ""; 
+                videoDescriptionText.textContent = "Description will appear here...";
+            }, 300);
         }
 
-        else if (step === 3) {
-            drawDie(1);
-            let blankX = cx - 50;
-            
-            // Hammering Punch
-            let punchX = (cx - 50) - 15; // Near head
-            // Impact motion
-            if(progress < 1) {
-                punchX -= Math.abs(Math.sin(progress * Math.PI * 2) * 60); 
-            }
-            drawPunch(punchX, "shape");
-            
-            // Severe deformation
-            let startW = 55; let startH = 15;
-            let endW = 80; let endH = 30;
-            
-            let curW = startW + (endW - startW) * progress;
-            let curH = startH + (endH - startH) * progress;
-            
-            // Heat: Bright Red on impact
-            let heat = 0.3 + (Math.sin(progress * Math.PI) * 0.7);
-            
-            drawBolt(blankX, 40, 100, curW, curH, heat);
-
-            // Big Impacts
-            if( (progress > 0.2 && progress < 0.23) || (progress > 0.7 && progress < 0.73) ) {
-                spawnParticles(blankX - curH, cy, 15, "spark");
-                shakeAmount = 15; // Big shake
-            }
-        }
-
-        else if (step === 4) {
-            // Rolling
-            let boltX = (cx - 200) + (progress * 400);
-            
-            // Top/Bottom Dies
-            ctx.fillStyle = "#334155";
-            ctx.fillRect(cx - 150, cy - 90, 300, 40); // Top
-            ctx.fillRect(cx - 150, cy + 50, 300, 40); // Bottom
-            
-            // Add threads visual
-            if (progress * 100 % 3 < 1) {
-                machine.threadLines.push(Math.random() * 90); 
-            }
-            
-            // Spin effect? visual only
-            drawBolt(boltX, 40, 100, 80, 30, 0);
-        }
-        
-        else if (step === 5) {
-            // Finished
-            let boltX = cx - 50;
-            
-            // Glow effect
-            ctx.shadowBlur = 20;
-            ctx.shadowColor = "#22c55e";
-            drawBolt(boltX, 40, 100, 80, 30, 0);
-            ctx.shadowBlur = 0;
-            
-            ctx.fillStyle = "#22c55e";
-            ctx.font = "bold 24px Arial";
-            ctx.textAlign = "center";
-            ctx.fillText("FINISHED BOLT", cx, cy - 100);
-        }
-
-        // Update Particles
-        particles.forEach((p, i) => {
-            p.update();
-            p.draw();
-            if(p.life <= 0) particles.splice(i, 1);
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") closeModalBtn();
         });
-
-        // Animation Progress
-        if (machine.isActive && step < 5) {
-            progress += 0.008; // Speed
-            if (progress >= 1) {
-                progress = 1;
-                machine.isActive = false;
-                enableNext();
-            }
-        }
         
-        ctx.restore();
-        requestAnimationFrame(animate);
-    }
-
-    // --- UI LOGIC ---
-    
-    function enableNext() {
-        if(step < 5) {
-            actionBtn.innerHTML = "Next Step >>";
-            actionBtn.disabled = false;
-            actionBtn.classList.add('pulse');
-            statusBox.style.borderColor = "#22c55e";
-            statusBox.style.color = "#22c55e";
-            statusBox.innerText = "Step Complete.";
-        } else {
-            finishLab();
-        }
-    }
-
-    actionBtn.addEventListener('click', () => {
-        if(actionBtn.innerHTML.includes("Next")) {
-            step++;
-            progress = 0;
-            particles = [];
-            machine.threadLines = [];
-            updateUI();
-            actionBtn.innerHTML = stepsData[step-1].btn;
-        } else {
-            // Start action
-            machine.isActive = true;
-            actionBtn.disabled = true;
-            actionBtn.innerHTML = "Processing...";
-            actionBtn.classList.remove('pulse');
-            statusBox.innerText = stepsData[step-1].status;
-            statusBox.style.borderColor = "#eab308"; // amber
-            statusBox.style.color = "#eab308";
-        }
-    });
-    
-    function updateUI() {
-        if(step > 5) return;
-        
-        // Text
-        const data = stepsData[step-1];
-        document.getElementById('stepTitle').innerText = data.title;
-        document.getElementById('stepContent').innerHTML = `<p>${data.text}</p>`;
-        actionBtn.innerHTML = data.btn;
-        
-        // Dots
-        document.querySelectorAll('.step-dot').forEach((d, i) => {
-            if(i+1 < step) {
-                d.className = "step-dot completed";
-                d.innerHTML = "✓";
-            } else if(i+1 === step) {
-                d.className = "step-dot active";
-                d.innerHTML = step;
-            } else {
-                d.className = "step-dot";
-                d.innerHTML = i+1;
-            }
+        // Ensure description stays visible even when video controls are shown
+        videoElement.addEventListener('play', function() {
+            videoDescriptionText.style.opacity = '1';
         });
-    }
-    
-    function finishLab() {
-        document.getElementById('stepTitle').innerText = stepsData[4].title;
-        document.getElementById('stepContent').innerHTML = `<p>${stepsData[4].text}</p>`;
-        actionBtn.style.display = 'none';
-        resetBtn.style.display = 'flex';
-        statusBox.innerText = "LAB COMPLETE";
         
-        document.querySelectorAll('.step-dot').forEach(d => {
-            d.className = "step-dot completed";
-            d.innerHTML = "✓";
+        videoElement.addEventListener('pause', function() {
+            videoDescriptionText.style.opacity = '0.9';
         });
-    }
-    
-    resetBtn.addEventListener('click', () => {
-        step = 1;
-        progress = 0;
-        machine.isActive = false;
-        resetBtn.style.display = 'none';
-        actionBtn.style.display = 'flex';
-        actionBtn.innerHTML = stepsData[0].btn;
-        actionBtn.disabled = false;
-        updateUI();
-    });
-
-    // Start Loop
-    animate();
-
-</script>
+    </script>
 </body>
 </html>
