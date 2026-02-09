@@ -1,0 +1,90 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "Q1. The process of removing the burs or flash from a forged component in drop forging is called:",
+      "answers": {
+        "a": "Swaging",
+        "b": "Perforating",
+        "c": "Trimming",
+        "d": "Fetting"
+      },
+      "explanations": {
+        "a": "Incorrect. Swaging shapes material but does not remove flash.",
+        "b": "Incorrect. Perforating is punching a hole.",
+        "c": "Correct. Trimming removes flash after drop forging.",
+        "d": "Incorrect. Fetting is not used for flash removal."
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Q2. Which of the following material cannot be forged:",
+      "answers": {
+        "a": "Wrought iron",
+        "b": "Cast iron",
+        "c": "Mild steel",
+        "d": "High carbon steel"
+      },
+      "explanations": {
+        "a": "Incorrect. Wrought iron is highly forgeable.",
+        "b": "Correct. Cast iron is brittle and cannot be forged.",
+        "c": "Incorrect. Mild steel is commonly forged.",
+        "d": "Incorrect. High carbon steel can be forged with temperature control."
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Q3. The forging defect due to hindrance to smooth flow of metal in component called lap. It occurred due to:",
+      "answers": {
+        "a": "The corner radius provided is too large",
+        "b": "The corner radius provided is too small",
+        "c": "Draft is not provided",
+        "d": "The shrinkage allowance is inadequate"
+      },
+      "explanations": {
+        "a": "Incorrect. Large corner radius does not cause laps.",
+        "b": "Correct. Too small corner radius obstructs flow and causes laps.",
+        "c": "Incorrect. Lack of draft causes sticking, not laps.",
+        "d": "Incorrect. Shrinkage allowance relates to casting, not forging laps."
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Q4. In valve forging simulation of multi-step forging, the number of steps required for valve forging are:",
+      "answers": {
+        "a": "2",
+        "b": "3",
+        "c": "5",
+        "d": "4"
+      },
+      "explanations": {
+        "a": "Incorrect. Valve forging requires more than 2 steps.",
+        "b": "Incorrect. The actual number is higher.",
+        "c": "Incorrect. It does not require 5 steps.",
+        "d": "Correct. Valve forging typically uses 4 steps in simulation."
+      },
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Q5. In the valve forging simulation of multi-step forging, the material of the billet is:",
+      "answers": {
+        "a": "Steel",
+        "b": "Brass",
+        "c": "Lead",
+        "d": "None of these"
+      },
+      "explanations": {
+        "a": "Correct. Valve forgings commonly use steel billets.",
+        "b": "Incorrect. Brass is not used for valve forging.",
+        "c": "Incorrect. Lead is not suitable for forging valves.",
+        "d": "Incorrect. The correct answer is steel."
+      },
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    }
+  ]
+}
