@@ -2,7 +2,7 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "Q6. The process of removing the burs or flash from a forged component in drop forging is called:",
+      "question": "Q1. The process of removing the burs or flash from a forged component in drop forging is called:",
       "answers": {
         "a": "Swaging",
         "b": "Perforating",
@@ -19,7 +19,7 @@
       "difficulty": "beginner"
     },
     {
-      "question": "Q7. Which of the following material cannot be forged:",
+      "question": "Q2. Which of the following material cannot be forged:",
       "answers": {
         "a": "Wrought iron",
         "b": "Cast iron",
@@ -36,7 +36,7 @@
       "difficulty": "beginner"
     },
     {
-      "question": "Q8. The forging defect due to hindrance to smooth flow of metal in component called lap. It occurred due to:",
+      "question": "Q3. The forging defect due to hindrance to smooth flow of metal in component called lap. It occurred due to:",
       "answers": {
         "a": "The corner radius provided is too large",
         "b": "The corner radius provided is too small",
@@ -53,7 +53,7 @@
       "difficulty": "beginner"
     },
     {
-      "question": "Q9. In valve forging simulation of multi-step forging, the number of steps required for valve forging are:",
+      "question": "Q4. In valve forging simulation of multi-step forging, the number of steps required for valve forging are:",
       "answers": {
         "a": "2",
         "b": "3",
@@ -70,7 +70,7 @@
       "difficulty": "beginner"
     },
     {
-      "question": "Q10. In the valve forging simulation of multi-step forging, the material of the billet is:",
+      "question": "Q5. In the valve forging simulation of multi-step forging, the material of the billet is:",
       "answers": {
         "a": "Steel",
         "b": "Brass",
