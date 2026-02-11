@@ -21,5 +21,5 @@ SrNo | Name | Faculty or Student | Department| Institute | Email id
 :--|:--|:--|:--|:--|:--|
 1 | Ajay Kant Upadhyay | Web Developer | Mechanical Engineering | Dayalbagh Educational Institute | ajaykant900@gmail.com
 2 | Mudit Vij | Student | Electrical Engineering | Dayalbagh Educational Institute | muditvij29@gmail.com
-3 | Shreyansh Jain | Student | Electrical Engineering | Dayalbagh Educational Institute | sjshreyansh2004@gmail.com
-4 | Netik Goswami | Student | Footwear Technology | Dayalbagh Educational Institute | netikg8@gmail.com
+3 | Shreyansh Jain | Student | Footwear Technology | Dayalbagh Educational Institute | sjshreyansh2004@gmail.com
+4 | Netik Goswami | Student | Electrical Engineering  | Dayalbagh Educational Institute | netikg8@gmail.com
